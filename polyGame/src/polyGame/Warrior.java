@@ -19,4 +19,10 @@ public class Warrior extends Human {
 		
 	}
 
+	@Override
+	public void stun() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -17,4 +17,10 @@ public class Wizard extends Human {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void stun() {
+		// TODO Auto-generated method stub
+		
+	}
 }

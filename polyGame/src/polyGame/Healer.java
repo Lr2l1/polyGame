@@ -19,4 +19,10 @@ public class Healer extends Human {
 		
 	}
 
+	@Override
+	public void stun() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
