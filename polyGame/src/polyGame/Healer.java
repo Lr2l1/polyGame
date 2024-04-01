@@ -25,4 +25,16 @@ public class Healer extends Human {
 		
 	}
 
+	@Override
+	public void silence() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void recover() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
