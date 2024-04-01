@@ -6,6 +6,8 @@ public abstract class Human extends Unit {
 		super(name, hp, power);
 	}
 	
+	abstract void skill() ; 
+	
 	
 
 }
