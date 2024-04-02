@@ -22,7 +22,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	public boolean isStun() {
 		return this.isStun();
 	}
-
+	
 	public void setIsStun() {
 		this.isStun = !isStun;
 	}
