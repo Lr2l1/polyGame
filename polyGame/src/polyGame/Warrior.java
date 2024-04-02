@@ -9,7 +9,7 @@ public class Warrior extends Human {
 		super("전사", 1000, 200, 80);
 
 	}
-
+	
 	@Override
 	void attack(Unit enenmy) {
 		int ranPower = ran.nextInt(super.MAX_POWER);

@@ -23,7 +23,7 @@ public class Wizard extends Human {
 			enenmy.setIsDead();
 		}
 	}
-
+	
 	@Override
 	void skill(Unit enenmy) {
 		setMp(getMp() - 40);

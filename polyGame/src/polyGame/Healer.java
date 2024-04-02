@@ -9,7 +9,7 @@ public class Healer extends Human {
 		super("힐러", 500, 500, 50);
 
 	}
-
+	
 	@Override
 	void attack(Unit enenmy) {
 		int ranPower = ran.nextInt(super.MAX_POWER);
