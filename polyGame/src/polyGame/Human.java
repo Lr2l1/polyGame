@@ -14,7 +14,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	public int getMp() {
 		return this.mp;
 	}
-
+	
 	public void setMp(int mp) {
 		this.mp = mp;
 	}
