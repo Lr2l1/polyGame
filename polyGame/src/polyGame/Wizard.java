@@ -39,14 +39,14 @@ public class Wizard extends Human {
 
 	@Override
 	public void stun() {
-		
+		setIsStun();
 	}
 
 	@Override
 	public void silence() {
-
+		setIsSilence();
 	}
-
+	
 	@Override
 	public void recover() {
 		setHp(getHp() + 50);

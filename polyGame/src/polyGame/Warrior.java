@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class Warrior extends Human {
 	private Random ran = new Random();
+
 	Warrior(String name, int hp, int power) {
-		super("전사",1000 , 200 , 80);
-		
+		super("전사", 1000, 200, 80);
+
 	}
 
 	@Override
@@ -22,16 +23,16 @@ public class Warrior extends Human {
 			enenmy.setHp(0);
 			enenmy.setIsDead();
 		}
-		
+
 	}
 
 	@Override
 	void skill(Unit enenmy) {
-		setMp(getMp()-40);
-		setPower(super.MAX_POWER*2);
-		setHp(getHp()+getPower());
-		System.out.printf("%s가 스킬을 사용하여 %d데미지를 입히고 %d의 체력 회복\n", getName(),getPower(),getPower()/2);
-		
+		setMp(getMp() - 40);
+		setPower(super.MAX_POWER * 2);
+		setHp(getHp() + getPower());
+		System.out.printf("%s가 스킬을 사용하여 %d데미지를 입히고 %d의 체력 회복\n", getName(), getPower(), getPower() / 2);
+
 		if (enenmy.getHp() <= 0) {
 			enenmy.setHp(0);
 			enenmy.setIsDead();
@@ -40,19 +41,17 @@ public class Warrior extends Human {
 
 	@Override
 	public void stun() {
-		
+		setIsStun();
 	}
 
 	@Override
 	public void silence() {
-		
-		
+		setIsSilence();
 	}
 
 	@Override
 	public void recover() {
-		setHp(getHp()+50);
-		
+		setHp(getHp() + 50);
 	}
 
 }

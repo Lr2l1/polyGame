@@ -12,7 +12,7 @@ public class Healer extends Human {
 
 	@Override
 	void attack(Unit enenmy) {
-		int ranPower = ran.nextInt(getPower());
+		int ranPower = ran.nextInt(super.MAX_POWER);
 
 		setPower(ranPower);
 
@@ -26,25 +26,26 @@ public class Healer extends Human {
 	}
 
 	@Override
-	void skill() {
-		setMp(getMp()-50);
+	void skill(Unit human) {
+		setMp(getMp() - 50);
 		System.out.printf("%s가 스킬을 사용하여 아군의 체력 50을 회복\n", getName());
-		
+
+		human.setHp(getHp() + 50);
 	}
 
 	@Override
 	public void stun() {
-
+		setIsStun();
 	}
 
 	@Override
 	public void silence() {
-
+		setIsSilence();
 	}
 
 	@Override
 	public void recover() {
-		setHp(getHp()+50);
+		setHp(getHp() + 50);
 	}
 
 }
