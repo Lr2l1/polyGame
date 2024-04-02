@@ -3,8 +3,8 @@ package polyGame;
 import java.util.Scanner;
 
 public class Game {
-	private final int SIZE = 4;
 	
+
 	private final int BATTLE = 1;
 	private final int FINISH = 2;
 
@@ -66,9 +66,25 @@ public class Game {
 		else if (select == SKILL)
 			skill();
 	}
+	private void battle() {
+		System.out.println("=====[BATTLE]====");
+		System.out.println("=====[PLAYER]====");
+		System.out.println(warrior);
+		System.out.println(wizard);
+		System.out.println(healer);
+		System.out.println("=====[MONSTER]====");
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+	}
+	
+	private void humanattack() {
+		System.out.println("");
+	}
 
 	private void attack() {
-		
+
 	}
 
 	private void skill() {
@@ -82,7 +98,7 @@ public class Game {
 	private boolean isRun() {
 		return isExit ? false : true;
 	}
-	
+
 	private void printResult() {
 		System.out.println("공주를 구출해냈어!");
 	}
