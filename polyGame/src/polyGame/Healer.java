@@ -1,6 +1,9 @@
 package polyGame;
 
+import java.util.Random;
+
 public class Healer extends Human {
+	private Random ran = new Random();
 
 	Healer(String name, int hp, int power) {
 		super("힐러", 500, 500, 50);
@@ -9,12 +12,24 @@ public class Healer extends Human {
 
 	@Override
 	void attack(Unit enenmy) {
+		int ranPower = ran.nextInt(getPower());
 
+		setPower(ranPower);
+
+		System.out.printf("%s가 %s를 %d의 데미지로 공격\n", getName(), enenmy.getName(), getPower());
+		enenmy.setHp(getHp() - getPower());
+
+		if (enenmy.getHp() <= 0) {
+			enenmy.setHp(0);
+			enenmy.setIsDead();
+		}
 	}
 
 	@Override
 	void skill() {
-
+		setMp(getMp()-50);
+		System.out.printf("%s가 스킬을 사용하여 아군의 체력 50을 회복\n", getName());
+		
 	}
 
 	@Override
@@ -29,7 +44,7 @@ public class Healer extends Human {
 
 	@Override
 	public void recover() {
-
+		setHp(getHp()+50);
 	}
 
 }
