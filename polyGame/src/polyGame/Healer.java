@@ -5,7 +5,7 @@ import java.util.Random;
 public class Healer extends Human {
 	private Random ran = new Random();
 
-	Healer(String name, int hp, int power) {
+	Healer() {
 		super("힐러", 500, 500, 50);
 
 	}

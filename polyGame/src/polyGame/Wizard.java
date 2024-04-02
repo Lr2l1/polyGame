@@ -5,7 +5,7 @@ import java.util.Random;
 public class Wizard extends Human {
 	private Random ran = new Random();
 
-	Wizard(String name, int hp, int power) {
+	Wizard() {
 		super("법사", 800, 400, 70);
 	}
 

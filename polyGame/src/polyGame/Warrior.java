@@ -5,7 +5,7 @@ import java.util.Random;
 public class Warrior extends Human {
 	private Random ran = new Random();
 
-	Warrior(String name, int hp, int power) {
+	Warrior() {
 		super("전사", 1000, 200, 80);
 
 	}
