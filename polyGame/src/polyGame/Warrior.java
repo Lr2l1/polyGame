@@ -3,37 +3,36 @@ package polyGame;
 public class Warrior extends Human {
 
 	Warrior(String name, int hp, int power) {
-		super(name, hp, power);
-		// TODO Auto-generated constructor stub
+		super("전사",1000 , 200 , 80);
+		
 	}
 
 	@Override
 	void attack(Unit enenmy) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	void skill() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void stun() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void silence() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void recover() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
