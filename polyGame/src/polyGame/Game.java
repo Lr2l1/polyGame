@@ -3,8 +3,6 @@ package polyGame;
 import java.util.Scanner;
 
 public class Game {
-	
-
 	private final int BATTLE = 1;
 	private final int FINISH = 2;
 
