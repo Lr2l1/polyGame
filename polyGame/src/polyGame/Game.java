@@ -23,10 +23,6 @@ public class Game {
 	HumanWarrior warrior = new HumanWarrior();
 	HumanWizard wizard = new HumanWizard();
 
-	MonsterBat bat = new MonsterBat();
-	MonsterOrc orc = new MonsterOrc();
-	MonsterWolf wolf = new MonsterWolf();
-
 	SetUnit SetUnit = new SetUnit();
 
 	Map<Integer, Monster> monsters = new HashMap<>();
@@ -35,6 +31,7 @@ public class Game {
 	public Game() {
 		this.count = 0;
 		players = SetUnit.setPlayer();
+
 	}
 
 	private int inputNumber(String message) {
@@ -76,61 +73,40 @@ public class Game {
 		System.out.println("[2]스킬");
 	}
 
-	private void runBattleWarrior(int select) {
-		if (select == ATTACK) {
-			count++;
-			attackWarrior();
-		} else if (select == SKILL && !warrior.isSilence())
-			skillWarrior();
-	}
-
-	private void runBattleWizard(int select) {
+	private void runBattle(int select, Human human) {
 		if (select == ATTACK)
-			attackWizard();
-		else if (select == SKILL && !wizard.isSilence())
-			skillWizard();
-	}
-
-	private void runBattleHealer(int select) {
-		if (select == ATTACK)
-			attackHealer();
+			attack(human);
 		else if (select == SKILL && !healer.isSilence())
-			skillHealer();
+			skill(human);
+	}
+
+	private void attack(Human human) {
+		int dice = ran.nextInt(monsters.size());
+		human.attack(monsters.get(dice));
+	}
+
+	private void skill(Human human) {
+		int dice = ran.nextInt(SIZE);
+		human.skill(monsters.get(dice));
 	}
 
 	private void battle() {
-		System.out.println("[전사]");
-		if (!warrior.isStun()) {
-			printBattleMenu();
-			runBattleWarrior(option());
-		} else if (warrior.isStun()) {
-			System.err.println("스턴상태에서는 행동이 불가능합니다.");
-			warrior.setIsStun();
-		}
-		System.out.println("[법사]");
-		if (!wizard.isStun()) {
-			printBattleMenu();
-			runBattleWizard(option());
-		} else if (wizard.isStun()) {
-			System.err.println("스턴상태에서는 행동이 불가능합니다.");
-			wizard.setIsStun();
-		}
-		System.out.println("[힐러]");
-		if (!healer.isStun()) {
-			printBattleMenu();
-			runBattleHealer(option());
-		} else if (healer.isStun()) {
-			System.err.println("스턴상태에서는 행동이 불가능합니다.");
-			healer.setIsStun();
+		for (int i = 0; i < players.size(); i++) {
+			if (!players.get(i).isStun()) {
+				printBattleMenu();
+				runBattle(option(), players.get(i));
+			} else if (players.get(i).isStun()) {
+				System.err.println("스턴상태에서는 행동이 불가능합니다.");
+				players.get(i).setIsStun();
+			}
 		}
 	}
 
 	private void playerInfo() {
 		System.out.println("=====[BATTLE]====");
 		System.out.println("=====[PLAYER]====");
-		System.out.println(warrior);
-		System.out.println(wizard);
-		System.out.println(healer);
+		for (int i = 0; i < players.size(); i++)
+			System.out.println(players.get(i));
 		System.out.println("=====[MONSTER]====");
 		for (int i = 0; i < SIZE; i++)
 			System.out.println(monsters.get(i));
@@ -142,21 +118,6 @@ public class Game {
 			if (!monsters.get(i).isDead())
 				monsters.get(i).attack(players.get(dice));
 		}
-	}
-
-	private void attackWarrior() {
-		int dice = ran.nextInt(monsters.size());
-		warrior.attack(monsters.get(dice));
-	}
-
-	private void attackWizard() {
-		int dice = ran.nextInt(monsters.size());
-		wizard.attack(monsters.get(dice));
-	}
-
-	private void attackHealer() {
-		int dice = ran.nextInt(monsters.size());
-		healer.attack(monsters.get(dice));
 	}
 
 	private void skillWarrior() {
