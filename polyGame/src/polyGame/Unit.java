@@ -47,8 +47,5 @@ public abstract class Unit {
 
 	abstract void attack(Unit enenmy);
 
-	@Override
-	public String toString() {
-		return String.format("[%s HP] %d/%d", name, hp, MAX_HP);
-	}
+	
 }
