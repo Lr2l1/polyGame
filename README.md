@@ -51,7 +51,7 @@
 
 > Class Diagram
 
-![diagram](zombie/image/zombie.jpg)
+![diagram](polyGame/image/polyGame.jpg)
 
 > Demo
 
