@@ -27,11 +27,14 @@ public class Game {
 	MonsterOrc orc = new MonsterOrc();
 	MonsterWolf wolf = new MonsterWolf();
 
+	SetUnit SetUnit = new SetUnit();
+
 	Map<Integer, Monster> monsters = new HashMap<>();
-	String monster[] = { "MonsterWolf", "MonsterBat", "MonsterOrc" };
+	Map<Integer, Human> players = new HashMap<>();
 
 	public Game() {
 		this.count = 0;
+		players = SetUnit.setPlayer();
 	}
 
 	private int inputNumber(String message) {
@@ -57,7 +60,7 @@ public class Game {
 
 	private void runMenu(int select) {
 		if (select == BATTLE) {
-			monsters = drawMonster();
+			monsters = SetUnit.drawMonster();
 			while (isBattle()) {
 				playerInfo();
 				battle();
@@ -133,22 +136,6 @@ public class Game {
 			System.out.println(monsters.get(i));
 	}
 
-	private Map<Integer, Monster> drawMonster() {
-		monsters = new HashMap<Integer, Monster>();
-		for (int i = 0; i < SIZE; i++) {
-			int dice = ran.nextInt(monster.length);
-			try {
-				Class<?> clazz = Class.forName("polyGame." + monster[dice]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
-				Monster temp = (Monster) obj;
-				monsters.put(i, temp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return monsters;
-	}
-
 	private void attackMonster() {
 		for (int i = 0; i < SIZE; i++) {
 			if (!monsters.get(i).isDead()) {
@@ -166,7 +153,7 @@ public class Game {
 				}
 			}
 		}
-		
+
 	}
 
 	private void attackWarrior() {
@@ -200,27 +187,22 @@ public class Game {
 	}
 
 	private void skillWarrior() {
-		int index = -1;
-		for (int i = 0; i < SIZE; i++) {
-			if (!monsters.get(i).isDead())
-				index = i;
-		}
-		if (index != -1)
-			warrior.skill(monsters.get(index));
+		int dice = ran.nextInt(SIZE);
+		warrior.skill(monsters.get(dice));
 	}
 
 	private void skillWizard() {
-		int index = -1;
 		for (int i = 0; i < SIZE; i++) {
 			if (!monsters.get(i).isDead())
-				index = i;
+				wizard.skill(monsters.get(i));
 		}
-		if (index != -1)
-			wizard.skill(monsters.get(index));
 	}
 
 	private void skillHealer() {
-		healer.skill(warrior);
+		for (int i = 0; i < 3; i++) {
+			healer.skill(players.get(i));
+		}
+
 	}
 
 	private void finish() {
