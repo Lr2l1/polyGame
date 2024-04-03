@@ -6,7 +6,7 @@ public class Orc extends Monster {
 	private Random ran = new Random();
 
 	Orc() {
-		super("오크", 100, 30);
+		super("오크", 150, 30);
 	}
 
 	@Override

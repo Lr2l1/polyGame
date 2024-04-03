@@ -6,7 +6,7 @@ public class Wolf extends Monster {
 	private Random ran = new Random();
 
 	Wolf() {
-		super("늑대", 100, 10);
+		super("늑대", 200, 10);
 
 	}
 
