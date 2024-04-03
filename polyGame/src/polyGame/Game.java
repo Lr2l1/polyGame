@@ -17,6 +17,7 @@ public class Game {
 	private Scanner scan = new Scanner(System.in);
 	private Random ran = new Random();
 	private boolean isExit;
+	private int count;
 
 	Healer healer = new Healer();
 	Warrior warrior = new Warrior();
@@ -30,6 +31,7 @@ public class Game {
 	String monster[] = { "Wolf", "Bat", "Orc" };
 
 	public Game() {
+		this.count = 0;
 	}
 
 	private int inputNumber(String message) {
@@ -72,8 +74,10 @@ public class Game {
 	}
 
 	private void runBattleWarrior(int select) {
-		if (select == ATTACK)
+		if (select == ATTACK) {
+			count++;
 			attackWarrior();
+		}
 		else if (select == SKILL)
 			skillWarrior();
 	}
@@ -226,24 +230,23 @@ public class Game {
 			isExit = true;
 			return false;
 		}
-		
+
 		for (int i = 0; i < SIZE; i++) {
 			if (!monsters.get(i).isDead())
 				return true;
 		}
-		
+
 		return false;
 	}
 
 	private boolean isRun() {
-		return isExit ? false : true;
+		return isExit || count == 5 ? false : true;
 	}
 
 	private void printResult() {
 		if (warrior.isDead() || wizard.isDead() || healer.isDead()) {
 			System.err.println("전투중에 사망했어..");
-		}
-		else
+		} else
 			System.out.println("공주를 구출해냈어!");
 	}
 
