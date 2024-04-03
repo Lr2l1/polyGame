@@ -138,52 +138,25 @@ public class Game {
 
 	private void attackMonster() {
 		for (int i = 0; i < SIZE; i++) {
-			if (!monsters.get(i).isDead()) {
-				if (!warrior.isDead())
-					monsters.get(i).attack(warrior);
-				else {
-					if (!wizard.isDead())
-						monsters.get(i).attack(wizard);
-					else {
-						if (!healer.isDead())
-							monsters.get(i).attack(healer);
-						else
-							return;
-					}
-				}
-			}
+			int dice = ran.nextInt(players.size());
+			if (!monsters.get(i).isDead())
+				monsters.get(i).attack(players.get(dice));
 		}
-
 	}
 
 	private void attackWarrior() {
-		int index = -1;
-		for (int i = 0; i < SIZE; i++) {
-			if (!monsters.get(i).isDead())
-				index = i;
-		}
-		if (index != -1)
-			warrior.attack(monsters.get(index));
+		int dice = ran.nextInt(monsters.size());
+		warrior.attack(monsters.get(dice));
 	}
 
 	private void attackWizard() {
-		int index = -1;
-		for (int i = 0; i < SIZE; i++) {
-			if (!monsters.get(i).isDead())
-				index = i;
-		}
-		if (index != -1)
-			wizard.attack(monsters.get(index));
+		int dice = ran.nextInt(monsters.size());
+		wizard.attack(monsters.get(dice));
 	}
 
 	private void attackHealer() {
-		int index = -1;
-		for (int i = 0; i < SIZE; i++) {
-			if (!monsters.get(i).isDead())
-				index = i;
-		}
-		if (index != -1)
-			healer.attack(monsters.get(index));
+		int dice = ran.nextInt(monsters.size());
+		healer.attack(monsters.get(dice));
 	}
 
 	private void skillWarrior() {
@@ -202,7 +175,6 @@ public class Game {
 		for (int i = 0; i < 3; i++) {
 			healer.skill(players.get(i));
 		}
-
 	}
 
 	private void finish() {
