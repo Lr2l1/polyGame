@@ -7,7 +7,6 @@ public class Warrior extends Human {
 
 	Warrior() {
 		super("전사", 1000, 200, 80);
-
 	}
 
 	@Override
@@ -24,7 +23,6 @@ public class Warrior extends Human {
 			monster.setHp(0);
 			monster.setIsDead();
 		}
-
 	}
 
 	@Override
@@ -32,7 +30,12 @@ public class Warrior extends Human {
 		Monster monster = (Monster) enenmy;
 		setMp(getMp() - 40);
 		setPower(super.MAX_POWER * 2);
-		setHp(getHp() + getPower());
+
+		if (getHp() + getPower() / 2 > MAX_HP) {
+			setHp(MAX_HP);
+		} else
+			setHp(getHp() + getPower() / 2);
+		
 		System.out.printf("%s가 스킬을 사용하여 %d데미지를 입히고 %d의 체력 회복\n", getName(), getPower(), getPower() / 2);
 		monster.setHp(monster.getHp() - getPower());
 
