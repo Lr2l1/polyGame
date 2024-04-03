@@ -1,8 +1,14 @@
 package polyGame;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
+
 public class Game {
+	private final int SIZE = 4;
+
 	private final int BATTLE = 1;
 	private final int FINISH = 2;
 
@@ -10,6 +16,7 @@ public class Game {
 	private final int SKILL = 1;
 
 	private Scanner scan = new Scanner(System.in);
+	private Random ran = new Random();
 	private boolean isExit;
 
 	Healer healer = new Healer();
@@ -20,8 +27,10 @@ public class Game {
 	Orc orc = new Orc();
 	Wolf wolf = new Wolf();
 
+	Map<Integer, Monster> monsters = new HashMap<>();
+	String monster[] = { "Wolf", "Bat", "Orc" };
+
 	public Game() {
-		isExit = false;
 	}
 
 	private int inputNumber(String message) {
@@ -54,34 +63,53 @@ public class Game {
 	}
 
 	private void printBattleMenu() {
+		battle();
 		System.out.println("[1]어택");
 		System.out.println("[2]스킬");
 	}
 
 	private void runBattleMenu(int select) {
 		if (select == ATTACK)
-			attack();
+			battle();
 		else if (select == SKILL)
 			skill();
 	}
+
 	private void battle() {
+		monsters = drawMonster();
 		System.out.println("=====[BATTLE]====");
 		System.out.println("=====[PLAYER]====");
 		System.out.println(warrior);
 		System.out.println(wizard);
 		System.out.println(healer);
 		System.out.println("=====[MONSTER]====");
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-	}
-	
-	private void humanattack() {
-		System.out.println("");
+		System.out.println(monsters.get(0));
+		System.out.println(monsters.get(1));
+		System.out.println(monsters.get(2));
+		System.out.println(monsters.get(3));
 	}
 
-	private void attack() {
+	private Map<Integer, Monster> drawMonster() {
+		monsters = new HashMap<Integer, Monster>();
+		for (int i = 0; i < SIZE; i++) {
+			int dice = ran.nextInt(monster.length);
+			try {
+				Class<?> clazz = Class.forName("polyGame." + monster[dice]);
+				Object obj = clazz.getDeclaredConstructor().newInstance();
+				Monster temp = (Monster) obj;
+				monsters.put(i, temp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return monsters;
+	}
+
+	private void attackMonster() {
+		
+	}
+
+	private void attackHuman() {
 
 	}
 
