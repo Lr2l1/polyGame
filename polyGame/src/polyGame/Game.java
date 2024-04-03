@@ -135,9 +135,9 @@ public class Game {
 	}
 
 	private boolean isBattle() {
-		if (warrior.isDead() || wizard.isDead() || healer.isDead()) {
-			isExit = true;
-			return false;
+		for (int i = 0; i < players.size(); i++) {
+			if (players.get(i).isDead())
+				return false;
 		}
 
 		for (int i = 0; i < SIZE; i++) {
@@ -153,10 +153,15 @@ public class Game {
 	}
 
 	private void printResult() {
-		if (warrior.isDead() || wizard.isDead() || healer.isDead()) {
-			System.err.println("전투중에 사망했어..");
-		} else
-			System.out.println("공주를 구출해냈어!");
+		boolean isFail = false;
+		for (int i = 0 ; i < players.size(); i ++) {
+			if (players.get(i).isDead());
+				isFail = true;
+		}
+		if (isFail)
+			System.err.println("전투중에 동료를 잃었어..");
+		else
+			System.out.println("공주를 구출했어!");
 	}
 
 	public void run() {
