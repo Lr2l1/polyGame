@@ -8,7 +8,10 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	Human(String name, int hp, int mp, int power) {
 		super(name, hp, power);
+		this.mp = mp;
 		this.MAX_MP = mp;
+		this.isStun = false;
+		this.isSilence = false;
 	}
 
 	public int getMp() {
@@ -20,9 +23,9 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	}
 
 	public boolean isStun() {
-		return this.isStun();
+		return this.isStun;
 	}
-	
+
 	public void setIsStun() {
 		this.isStun = !isStun;
 	}
@@ -36,5 +39,13 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	}
 
 	abstract void skill(Unit unit);
+	
+	@Override
+	public String toString() {
+		String info = String.format("[%s] %d/%d", getName(), getHp(), getMp());
+//		info += String.format("%s" , isStun() ? " 스턴상태" : "");
+//		info += String.format("%s" , isSilence() ? " 침묵상태" : "");
+		return info;
+	}
 
 }
