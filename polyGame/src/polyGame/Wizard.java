@@ -39,11 +39,13 @@ public class Wizard extends Human {
 
 	@Override
 	public void stun() {
+		System.out.println("한턴동안 스턴");
 		setIsStun();
 	}
 
 	@Override
 	public void silence() {
+		System.out.println("한턴동안 침묵");
 		setIsSilence();
 	}
 	
