@@ -12,7 +12,7 @@ public class Game {
 	private final int FINISH = 2;
 
 	private final int ATTACK = 1;
-	private final int SKILL = 1;
+	private final int SKILL = 2;
 
 	private Scanner scan = new Scanner(System.in);
 	private Random ran = new Random();
@@ -28,7 +28,6 @@ public class Game {
 
 	Map<Integer, Monster> monsters = new HashMap<>();
 	String monster[] = { "Wolf", "Bat", "Orc" };
-	String human[] = { "Healer", "Warrior", "Wizard" };
 
 	public Game() {
 	}
@@ -95,14 +94,29 @@ public class Game {
 
 	private void battle() {
 		System.out.println("[전사]");
-		printBattleMenu();
-		runBattleWarrior(option());
+		if (!warrior.isStun()) {
+			printBattleMenu();
+			runBattleWarrior(option());
+		} else if (warrior.isStun()) {
+			System.err.println("스턴상태에서는 행동이 불가능합니다.");
+			warrior.setIsStun();
+		}
 		System.out.println("[법사]");
-		printBattleMenu();
-		runBattleWizard(option());
+		if (!wizard.isStun()) {
+			printBattleMenu();
+			runBattleWizard(option());
+		} else if (wizard.isStun()) {
+			System.err.println("스턴상태에서는 행동이 불가능합니다.");
+			wizard.setIsStun();
+		}
 		System.out.println("[힐러]");
-		printBattleMenu();
-		runBattleHealer(option());
+		if (!healer.isStun()) {
+			printBattleMenu();
+			runBattleHealer(option());
+		} else if (healer.isStun()) {
+			System.err.println("스턴상태에서는 행동이 불가능합니다.");
+			healer.setIsStun();
+		}
 	}
 
 	private void playerInfo() {
@@ -155,7 +169,8 @@ public class Game {
 			if (!monsters.get(i).isDead())
 				index = i;
 		}
-		warrior.attack(monsters.get(index));
+		if (index != -1)
+			warrior.attack(monsters.get(index));
 	}
 
 	private void attackWizard() {
@@ -164,7 +179,8 @@ public class Game {
 			if (!monsters.get(i).isDead())
 				index = i;
 		}
-		wizard.attack(monsters.get(index));
+		if (index != -1)
+			wizard.attack(monsters.get(index));
 	}
 
 	private void attackHealer() {
@@ -173,7 +189,8 @@ public class Game {
 			if (!monsters.get(i).isDead())
 				index = i;
 		}
-		healer.attack(monsters.get(index));
+		if (index != -1)
+			healer.attack(monsters.get(index));
 	}
 
 	private void skillWarrior() {
@@ -182,8 +199,8 @@ public class Game {
 			if (!monsters.get(i).isDead())
 				index = i;
 		}
-		warrior.skill(monsters.get(index));
-
+		if (index != -1)
+			warrior.skill(monsters.get(index));
 	}
 
 	private void skillWizard() {
@@ -192,13 +209,12 @@ public class Game {
 			if (!monsters.get(i).isDead())
 				index = i;
 		}
-		wizard.skill(monsters.get(index));
-
+		if (index != -1)
+			wizard.skill(monsters.get(index));
 	}
 
 	private void skillHealer() {
 		healer.skill(warrior);
-
 	}
 
 	private void finish() {
@@ -206,11 +222,16 @@ public class Game {
 	}
 
 	private boolean isBattle() {
+		if (warrior.isDead() || wizard.isDead() || healer.isDead()) {
+			isExit = true;
+			return false;
+		}
+		
 		for (int i = 0; i < SIZE; i++) {
 			if (!monsters.get(i).isDead())
 				return true;
 		}
-
+		
 		return false;
 	}
 
@@ -219,7 +240,11 @@ public class Game {
 	}
 
 	private void printResult() {
-		System.out.println("공주를 구출해냈어!");
+		if (warrior.isDead() || wizard.isDead() || healer.isDead()) {
+			System.err.println("전투중에 사망했어..");
+		}
+		else
+			System.out.println("공주를 구출해냈어!");
 	}
 
 	public void run() {
