@@ -77,22 +77,21 @@ public class Game {
 		if (select == ATTACK) {
 			count++;
 			attackWarrior();
-		}
-		else if (select == SKILL)
+		} else if (select == SKILL && !warrior.isSilence())
 			skillWarrior();
 	}
 
 	private void runBattleWizard(int select) {
 		if (select == ATTACK)
 			attackWizard();
-		else if (select == SKILL)
+		else if (select == SKILL && !wizard.isSilence())
 			skillWizard();
 	}
 
 	private void runBattleHealer(int select) {
 		if (select == ATTACK)
 			attackHealer();
-		else if (select == SKILL)
+		else if (select == SKILL && !healer.isSilence())
 			skillHealer();
 	}
 
