@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class Game {
 	private final int SIZE = 4;
 
@@ -29,6 +28,7 @@ public class Game {
 
 	Map<Integer, Monster> monsters = new HashMap<>();
 	String monster[] = { "Wolf", "Bat", "Orc" };
+	String human[] = { "Healer", "Warrior", "Wizard" };
 
 	public Game() {
 	}
@@ -56,37 +56,64 @@ public class Game {
 
 	private void runMenu(int select) {
 		if (select == BATTLE) {
-			printBattleMenu();
-			runBattleMenu(option());
+			monsters = drawMonster();
+			while (isBattle()) {
+				playerInfo();
+				battle();
+				attackMonster();
+			}
 		} else if (select == FINISH)
 			finish();
 	}
 
 	private void printBattleMenu() {
-		battle();
+
 		System.out.println("[1]어택");
 		System.out.println("[2]스킬");
 	}
 
-	private void runBattleMenu(int select) {
+	private void runBattleWarrior(int select) {
 		if (select == ATTACK)
-			battle();
+			attackWarrior();
 		else if (select == SKILL)
-			skill();
+			skillWarrior();
+	}
+
+	private void runBattleWizard(int select) {
+		if (select == ATTACK)
+			attackWizard();
+		else if (select == SKILL)
+			skillWizard();
+	}
+
+	private void runBattleHealer(int select) {
+		if (select == ATTACK)
+			attackHealer();
+		else if (select == SKILL)
+			skillHealer();
 	}
 
 	private void battle() {
-		monsters = drawMonster();
+		System.out.println("[전사]");
+		printBattleMenu();
+		runBattleWarrior(option());
+		System.out.println("[법사]");
+		printBattleMenu();
+		runBattleWizard(option());
+		System.out.println("[힐러]");
+		printBattleMenu();
+		runBattleHealer(option());
+	}
+
+	private void playerInfo() {
 		System.out.println("=====[BATTLE]====");
 		System.out.println("=====[PLAYER]====");
 		System.out.println(warrior);
 		System.out.println(wizard);
 		System.out.println(healer);
 		System.out.println("=====[MONSTER]====");
-		System.out.println(monsters.get(0));
-		System.out.println(monsters.get(1));
-		System.out.println(monsters.get(2));
-		System.out.println(monsters.get(3));
+		for (int i = 0; i < SIZE; i++)
+			System.out.println(monsters.get(i));
 	}
 
 	private Map<Integer, Monster> drawMonster() {
@@ -106,19 +133,85 @@ public class Game {
 	}
 
 	private void attackMonster() {
-		
+		for (int i = 0; i < SIZE; i++) {
+			if (!warrior.isDead())
+				monsters.get(i).attack(warrior);
+			else {
+				if (!wizard.isDead())
+					monsters.get(i).attack(wizard);
+				else {
+					if (!healer.isDead())
+						monsters.get(i).attack(healer);
+					else
+						return;
+				}
+			}
+		}
 	}
 
-	private void attackHuman() {
+	private void attackWarrior() {
+		int index = -1;
+		for (int i = 0; i < SIZE; i++) {
+			if (!monsters.get(i).isDead())
+				index = i;
+		}
+		warrior.attack(monsters.get(index));
+	}
+
+	private void attackWizard() {
+		int index = -1;
+		for (int i = 0; i < SIZE; i++) {
+			if (!monsters.get(i).isDead())
+				index = i;
+		}
+		wizard.attack(monsters.get(index));
+	}
+
+	private void attackHealer() {
+		int index = -1;
+		for (int i = 0; i < SIZE; i++) {
+			if (!monsters.get(i).isDead())
+				index = i;
+		}
+		healer.attack(monsters.get(index));
+	}
+
+	private void skillWarrior() {
+		int index = -1;
+		for (int i = 0; i < SIZE; i++) {
+			if (!monsters.get(i).isDead())
+				index = i;
+		}
+		warrior.skill(monsters.get(index));
 
 	}
 
-	private void skill() {
+	private void skillWizard() {
+		int index = -1;
+		for (int i = 0; i < SIZE; i++) {
+			if (!monsters.get(i).isDead())
+				index = i;
+		}
+		wizard.skill(monsters.get(index));
+
+	}
+
+	private void skillHealer() {
+		healer.skill(warrior);
 
 	}
 
 	private void finish() {
 		isExit = true;
+	}
+
+	private boolean isBattle() {
+		for (int i = 0; i < SIZE; i++) {
+			if (!monsters.get(i).isDead())
+				return true;
+		}
+
+		return false;
 	}
 
 	private boolean isRun() {
@@ -135,6 +228,6 @@ public class Game {
 			int sel = inputNumber("메뉴");
 			runMenu(sel);
 		}
-
+		printResult();
 	}
 }
