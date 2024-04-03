@@ -2,10 +2,10 @@ package polyGame;
 
 import java.util.Random;
 
-public class Warrior extends Human {
+public class HumanWarrior extends Human {
 	private Random ran = new Random();
 
-	Warrior() {
+	HumanWarrior() {
 		super("전사", 1000, 200, 80);
 	}
 

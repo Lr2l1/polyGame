@@ -19,16 +19,16 @@ public class Game {
 	private boolean isExit;
 	private int count;
 
-	Healer healer = new Healer();
-	Warrior warrior = new Warrior();
-	Wizard wizard = new Wizard();
+	HumanHealer healer = new HumanHealer();
+	HumanWarrior warrior = new HumanWarrior();
+	HumanWizard wizard = new HumanWizard();
 
-	Bat bat = new Bat();
-	Orc orc = new Orc();
-	Wolf wolf = new Wolf();
+	MonsterBat bat = new MonsterBat();
+	MonsterOrc orc = new MonsterOrc();
+	MonsterWolf wolf = new MonsterWolf();
 
 	Map<Integer, Monster> monsters = new HashMap<>();
-	String monster[] = { "Wolf", "Bat", "Orc" };
+	String monster[] = { "MonsterWolf", "MonsterBat", "MonsterOrc" };
 
 	public Game() {
 		this.count = 0;
@@ -166,6 +166,7 @@ public class Game {
 				}
 			}
 		}
+		
 	}
 
 	private void attackWarrior() {

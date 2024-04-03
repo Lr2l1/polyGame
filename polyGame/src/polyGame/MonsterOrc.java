@@ -2,12 +2,11 @@ package polyGame;
 
 import java.util.Random;
 
-public class Bat extends Monster {
+public class MonsterOrc extends Monster {
 	private Random ran = new Random();
-	
-	Bat() {
-		super("박쥐", 100, 20);
 
+	MonsterOrc() {
+		super("오크", 150, 30);
 	}
 
 	@Override
@@ -16,12 +15,16 @@ public class Bat extends Monster {
 		int ranPower = ran.nextInt(super.MAX_POWER) + super.MAX_POWER;
 		setPower(ranPower);
 		human.setHp(human.getHp() - getPower());
+
 		System.out.printf("%s가 %s를 %d의 데미지로 공격\n", getName(), human.getName(), getPower());
-		human.silence();
+		int dice = ran.nextInt(3);
+
+		if (dice == 1)
+			human.stun();
+
 		if (human.getHp() <= 0) {
 			human.setHp(0);
 			human.setIsDead();
 		}
-
 	}
 }

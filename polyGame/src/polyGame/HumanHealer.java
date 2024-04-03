@@ -2,11 +2,11 @@ package polyGame;
 
 import java.util.Random;
 
-public class Wizard extends Human {
+public class HumanHealer extends Human {
 	private Random ran = new Random();
 
-	Wizard() {
-		super("법사", 800, 400, 70);
+	HumanHealer() {
+		super("힐러", 500, 500, 50);
 	}
 
 	@Override
@@ -23,22 +23,15 @@ public class Wizard extends Human {
 			monster.setHp(0);
 			monster.setIsDead();
 		}
-
 	}
 
 	@Override
-	void skill(Unit enenmy) {
-		Monster monster = (Monster) enenmy;
-		setMp(getMp() - 40);
-		int ranPower = ran.nextInt(super.MAX_POWER);
-		setPower(ranPower);
-		System.out.printf("%s가 스킬을 사용하여 %d데미지\n", getName(), getPower());
-		monster.setHp(monster.getHp() - getPower());
+	void skill(Unit unit) {
+		Human human = (Human) unit;
+		setMp(getMp() - 50);
+		System.out.printf("%s가 스킬을 사용하여 아군의 체력 50을 회복\n", getName());
 
-		if (enenmy.getHp() <= 0) {
-			enenmy.setHp(0);
-			enenmy.setIsDead();
-		}
+		human.setHp(human.getHp() + 50);
 	}
 
 	@Override
@@ -56,6 +49,6 @@ public class Wizard extends Human {
 	@Override
 	public void recover() {
 		setHp(getHp() + 50);
-
 	}
+
 }
