@@ -73,21 +73,14 @@ public class Game {
 		System.out.println("[2]스킬");
 	}
 
-	private void runBattle(int select, Human human) {
-		if (select == ATTACK)
-			attack(human);
-		else if (select == SKILL && !healer.isSilence())
-			skill(human);
-	}
-
-	private void attack(Human human) {
-		int dice = ran.nextInt(monsters.size());
-		human.attack(monsters.get(dice));
-	}
-
-	private void skill(Human human) {
-		int dice = ran.nextInt(SIZE);
-		human.skill(monsters.get(dice));
+	private void playerInfo() {
+		System.out.println("=====[BATTLE]====");
+		System.out.println("=====[PLAYER]====");
+		for (int i = 0; i < players.size(); i++)
+			System.out.println(players.get(i));
+		System.out.println("=====[MONSTER]====");
+		for (int i = 0; i < SIZE; i++)
+			System.out.println(monsters.get(i));
 	}
 
 	private void battle() {
@@ -102,14 +95,31 @@ public class Game {
 		}
 	}
 
-	private void playerInfo() {
-		System.out.println("=====[BATTLE]====");
-		System.out.println("=====[PLAYER]====");
-		for (int i = 0; i < players.size(); i++)
-			System.out.println(players.get(i));
-		System.out.println("=====[MONSTER]====");
-		for (int i = 0; i < SIZE; i++)
-			System.out.println(monsters.get(i));
+	private void runBattle(int select, Human human) {
+		if (select == ATTACK)
+			attack(human);
+		else if (select == SKILL && !healer.isSilence())
+			skill(human);
+	}
+
+	private void attack(Human human) {
+		int dice = ran.nextInt(monsters.size());
+		human.attack(monsters.get(dice));
+	}
+
+	private void skill(Human human) {
+		if (human.equals(players.get(0))) {
+			int dice = ran.nextInt(SIZE);
+			human.skill(monsters.get(dice));
+		} else if (human.equals(players.get(1))) {
+			for (int i = 0; i < SIZE; i++) {
+				if (!monsters.get(i).isDead())
+					wizard.skill(monsters.get(i));
+			}
+		} else if (human.equals(players.get(2))) {
+			for (int i = 0; i < 3; i++)
+				healer.skill(players.get(i));
+		}
 	}
 
 	private void attackMonster() {
@@ -117,24 +127,6 @@ public class Game {
 			int dice = ran.nextInt(players.size());
 			if (!monsters.get(i).isDead())
 				monsters.get(i).attack(players.get(dice));
-		}
-	}
-
-	private void skillWarrior() {
-		int dice = ran.nextInt(SIZE);
-		warrior.skill(monsters.get(dice));
-	}
-
-	private void skillWizard() {
-		for (int i = 0; i < SIZE; i++) {
-			if (!monsters.get(i).isDead())
-				wizard.skill(monsters.get(i));
-		}
-	}
-
-	private void skillHealer() {
-		for (int i = 0; i < 3; i++) {
-			healer.skill(players.get(i));
 		}
 	}
 
