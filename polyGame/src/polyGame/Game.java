@@ -151,16 +151,18 @@ public class Game {
 
 	private void attackMonster() {
 		for (int i = 0; i < SIZE; i++) {
-			if (!warrior.isDead())
-				monsters.get(i).attack(warrior);
-			else {
-				if (!wizard.isDead())
-					monsters.get(i).attack(wizard);
+			if (!monsters.get(i).isDead()) {
+				if (!warrior.isDead())
+					monsters.get(i).attack(warrior);
 				else {
-					if (!healer.isDead())
-						monsters.get(i).attack(healer);
-					else
-						return;
+					if (!wizard.isDead())
+						monsters.get(i).attack(wizard);
+					else {
+						if (!healer.isDead())
+							monsters.get(i).attack(healer);
+						else
+							return;
+					}
 				}
 			}
 		}
