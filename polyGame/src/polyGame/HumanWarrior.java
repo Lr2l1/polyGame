@@ -6,7 +6,7 @@ public class HumanWarrior extends Human {
 	private Random ran = new Random();
 
 	HumanWarrior() {
-		super("전사", 1000, 200, 80);
+		super("전사", 1, 1000, 200, 80);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class HumanWarrior extends Human {
 			setHp(MAX_HP);
 		} else
 			setHp(getHp() + getPower() / 2);
-		
+
 		System.out.printf("%s가 스킬을 사용하여 %d데미지를 입히고 %d의 체력 회복\n", getName(), getPower(), getPower() / 2);
 		monster.setHp(monster.getHp() - getPower());
 

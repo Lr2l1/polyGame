@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class HumanArcher extends Human {
 	private Random ran = new Random();
-	
+
 	HumanArcher() {
-		super("아처", 700, 400, 50);
+		super("아처", 1, 700, 400, 50);
 	}
 
 	@Override

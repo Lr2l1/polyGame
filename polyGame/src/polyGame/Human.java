@@ -3,6 +3,7 @@ package polyGame;
 public abstract class Human extends Unit implements Stunable, Silenceable, Recoverable {
 	public final int MAX_MP;
 	private int mp;
+	private int level;
 	private boolean isStun;
 	private boolean isSilence;
 	static int money;
@@ -10,15 +11,24 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	private Item armor;
 	private Item ring;
 
-	Human(String name, int hp, int mp, int power) {
+	Human(String name, int level, int hp, int mp, int power) {
 		super(name, hp, power);
 		this.mp = mp;
 		this.MAX_MP = mp;
+		this.level = level;
 		this.isStun = false;
 		this.isSilence = false;
 		this.helmet = null;
 		this.armor = null;
 		this.ring = null;
+	}
+
+	public int getLevel() {
+		return this.level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public int getMp() {

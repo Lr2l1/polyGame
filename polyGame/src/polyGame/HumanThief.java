@@ -6,7 +6,7 @@ public class HumanThief extends Human {
 	private Random ran = new Random();
 
 	HumanThief() {
-		super("도적", 600, 300, 70);
+		super("도적", 1, 600, 300, 70);
 	}
 
 	@Override

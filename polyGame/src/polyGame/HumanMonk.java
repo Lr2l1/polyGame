@@ -6,7 +6,7 @@ public class HumanMonk extends Human {
 	private Random ran = new Random();
 
 	HumanMonk() {
-		super("뭉크", 800, 800, 100);
+		super("뭉크", 1, 800, 800, 100);
 	}
 
 	@Override

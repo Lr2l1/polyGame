@@ -6,7 +6,7 @@ public class HumanHealer extends Human {
 	private Random ran = new Random();
 
 	HumanHealer() {
-		super("힐러", 500, 500, 50);
+		super("힐러", 1, 500, 500, 50);
 	}
 
 	@Override

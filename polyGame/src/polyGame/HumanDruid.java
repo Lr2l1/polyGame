@@ -6,7 +6,7 @@ public class HumanDruid extends Human {
 	private Random ran = new Random();
 
 	HumanDruid() {
-		super("드루이드", 600, 1000, 150);
+		super("드루이드", 1, 600, 1000, 150);
 	}
 
 	@Override

@@ -6,7 +6,7 @@ public class HumanWizard extends Human {
 	private Random ran = new Random();
 
 	HumanWizard() {
-		super("법사", 800, 400, 70);
+		super("법사", 1, 800, 400, 70);
 	}
 
 	@Override
