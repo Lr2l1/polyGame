@@ -31,7 +31,7 @@ public class HumanHealer extends Human {
 		setMp(getMp() - 50);
 		System.out.printf("%s가 스킬을 사용하여 아군의 체력 50을 회복\n", getName());
 
-		human.setHp(human.getHp() + 50);
+		human.recover();
 
 		if (human.getHp() >= human.MAX_HP) {
 			human.setHp(human.MAX_HP);
