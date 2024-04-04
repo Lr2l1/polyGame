@@ -63,7 +63,7 @@ public class Shop {
 		item.price = 15000;
 	}
 
-	private void shopMenu() {
+	public void printMenu() {
 		System.out.println("================");
 		System.out.println("[1]투구 [2]갑옷 [3]반지");
 		int kind = game.inputNumber("메뉴");
@@ -92,7 +92,7 @@ public class Shop {
 					if (count == selNum) {
 						inventory.addItem(items.get(i));
 						Human.money -= items.get(i).price;
-						System.out.println("[" + items.get(i).name + "] 을 구입했습니다.");
+						System.out.printf("[%s] 을 구입했습니다\n.", items.get(i).name);
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
@@ -110,10 +110,10 @@ public class Shop {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).kind != kind)
 				continue;
-			System.out.print("[" + (count + 1) + "번] ");
-			System.out.print("[이름 : " + items.get(i).name + "] ");
-			System.out.print("[능력 : " + items.get(i).power + "] ");
-			System.out.print("[가격 : " + items.get(i).price + "] ");
+			System.out.printf("[ %s번] ", count+1);
+			System.out.printf("[이름 : %s] " , items.get(i).name);
+			System.out.printf("[능력 : %s] " , items.get(i).power);
+			System.out.printf("[가격 : %s] " , items.get(i).price);
 			System.out.println();
 			count++;
 		}
