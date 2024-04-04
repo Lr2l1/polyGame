@@ -39,7 +39,7 @@ public class Guild {
 	public void printMenu() {
 		System.out.println("=====================");
 		System.out.println("[1. 플레이어목록] [2. 대기중인 플레이어] [3. 플레이어 교체]");
-		System.out.println("[0. 뒤로가기]");
+		System.out.println("[4. 길드원 뽑기] [0. 뒤로가기]");
 		int sel = Game.inputNumber("메뉴");
 		if (sel == 1)
 			printPlayers();
@@ -47,6 +47,8 @@ public class Guild {
 			printGuild();
 		else if (sel == 3)
 			changePlayer();
+		else if (sel == 4)
+			guildDraw();
 		else if (sel == 0)
 			return;
 	}
@@ -84,7 +86,7 @@ public class Guild {
 				Class<?> clazz = Class.forName("polyGame." + human[0]);
 				Object obj = clazz.getDeclaredConstructor().newInstance();
 				Human temp = (Human) obj;
-				players.put(count, temp);
+				guild.put(count, temp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -93,7 +95,7 @@ public class Guild {
 				Class<?> clazz = Class.forName("polyGame." + human[1]);
 				Object obj = clazz.getDeclaredConstructor().newInstance();
 				Human temp = (Human) obj;
-				players.put(count, temp);
+				guild.put(count, temp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -102,7 +104,7 @@ public class Guild {
 				Class<?> clazz = Class.forName("polyGame." + human[2]);
 				Object obj = clazz.getDeclaredConstructor().newInstance();
 				Human temp = (Human) obj;
-				players.put(count, temp);
+				guild.put(count, temp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -111,13 +113,13 @@ public class Guild {
 				Class<?> clazz = Class.forName("polyGame." + human[3]);
 				Object obj = clazz.getDeclaredConstructor().newInstance();
 				Human temp = (Human) obj;
-				players.put(count, temp);
+				guild.put(count, temp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
-		System.out.printf("뽑힌 길드원은 %s~\n", guild.get(count));
+		System.out.printf("뽑힌 길드원은 %s~\n", guild.get(count).getName());
 		count++;
 	}
 
