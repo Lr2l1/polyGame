@@ -9,6 +9,8 @@ public class SetPlayer {
 	private Scanner scan = new Scanner(System.in);
 	private Random ran = new Random();
 
+	Game game = new Game();
+
 	Map<Integer, Human> players;
 	Map<Integer, Human> guild;
 	String player[] = { "HumanWarrior", "HumanWizard", "HumanHealer" };
@@ -24,18 +26,6 @@ public class SetPlayer {
 		players = setPlayer();
 	}
 
-	private int inputNumber(String message) {
-		int number = -1;
-		System.out.print(message + " : ");
-		try {
-			String input = scan.next();
-			number = Integer.parseInt(input);
-		} catch (Exception e) {
-			System.out.println("숫자만 입력해주세요");
-		}
-		return number;
-	}
-
 	public Map<Integer, Human> setPlayer() {
 		for (int i = 0; i < 3; i++) {
 			try {
@@ -47,35 +37,29 @@ public class SetPlayer {
 				e.printStackTrace();
 			}
 		}
-
 		return players;
 	}
 
-	public Map<Integer, Human> changePlayer() {
-		for (int i = 0; i < 3; i++) {
-			System.out.print(i + 1);
-			System.out.println(players.get(i));
-		}
-
-		int index = inputNumber("플레이어선택") - 1;
+	public void changePlayer() {
+		printPlayers();
+		int index = game.inputNumber("플레이어선택") - 1;
 		if (index < 0 || index >= players.size()) {
 			System.err.println("잘못된 번호입니다.");
-			return players;
+			return;
 		}
 
-		for (int i = 0; i < guild.size(); i++) {
-			System.out.println(guild.get(i));
-		}
-		int idx = inputNumber("길드원") - 1;
+		printGuild();
+		int idx = game.inputNumber("길드원") - 1;
 		if (index < 0 || index >= guild.size()) {
 			System.err.println("잘못된 번호입니다.");
-			return players;
+			return;
 		}
 
+		Human temp = players.get(index);
 		players.put(index, guild.get(idx));
+		guild.put(idx, temp);
 		System.out.println("플레이어가 교체되었어.");
 
-		return players;
 	}
 
 	public void guildDraw() {
@@ -124,6 +108,34 @@ public class SetPlayer {
 
 		System.out.printf("뽑힌 길드원은 %s~\n", guild.get(count));
 		count++;
+	}
+
+	public void printPlayers() {
+		for (int i = 0; i < players.size(); i++) {
+			System.out.print("[" + (i + 1) + "번]");
+			System.out.print(" [이름 : " + players.get(i).getName() + "]");
+//		      System.out.print(" [레벨 : " + players.get(i).getLevel()l + "]");
+			System.out.print(" [체력 : " + players.get(i).getHp());
+			System.out.println(" / " + players.get(i).MAX_HP + "]");
+			System.out.print(" [마나 : " + players.get(i).getMp());
+			System.out.println(" / " + players.get(i).MAX_MP + "]");
+			System.out.print("[공격력 : " + players.get(i).getPower() + "]");
+			System.out.println();
+		}
+	}
+
+	public void printGuild() {
+		for (int i = 0; i < guild.size(); i++) {
+			System.out.print("[" + (i + 1) + "번]");
+			System.out.print(" [이름 : " + guild.get(i).getName() + "]");
+//		      System.out.print(" [레벨 : " + players.get(i).getLevel()l + "]");
+			System.out.print(" [체력 : " + guild.get(i).getHp());
+			System.out.println(" / " + guild.get(i).MAX_HP + "]");
+			System.out.print(" [마나 : " + guild.get(i).getMp());
+			System.out.println(" / " + guild.get(i).MAX_MP + "]");
+			System.out.print("[공격력 : " + guild.get(i).getPower() + "]");
+			System.out.println();
+		}
 	}
 
 }
