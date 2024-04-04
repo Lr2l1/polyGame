@@ -71,7 +71,6 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	abstract void skill(Unit unit);
 
-
 	@Override
 	public String toString() {
 		String info = String.format("[%s] HP %d/%d MP %d/%d\n상태이상 : ", getName(), getHp(), MAX_HP, getMp(), MAX_MP);
