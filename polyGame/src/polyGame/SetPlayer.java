@@ -6,7 +6,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class SetPlayer {
-	private Scanner scan = new Scanner(System.in);
 	private Random ran = new Random();
 
 	Game game = new Game();
@@ -150,6 +149,24 @@ public class SetPlayer {
 			System.out.println(" / " + guild.get(i).MAX_MP + "]");
 			System.out.print("[공격력 : " + guild.get(i).getPower() + "]");
 			System.out.println();
+		}
+	}
+
+	public void printWornItem(int num) {
+		if (players.get(num).getHelmet() == null) {
+			System.out.println("[헬멧 : 없음 ]");
+		} else {
+			System.out.printf("[헬멧 : %s\n", players.get(num).getHelmet().name);
+		}
+		if (players.get(num).getArmor() == null) {
+			System.out.println("[방어구 : 없음 ]");
+		} else {
+			System.out.printf("[방어구 : %s\n", players.get(num).getArmor().name);
+		}
+		if (players.get(num).getRing() == null) {
+			System.out.println("[반지 : 없음 ]");
+		} else {
+			System.out.printf("[반지 : %s\n", players.get(num).getRing().name);
 		}
 	}
 
