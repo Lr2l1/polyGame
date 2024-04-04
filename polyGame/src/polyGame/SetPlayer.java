@@ -40,6 +40,21 @@ public class SetPlayer {
 		return players;
 	}
 
+	public void printMenu() {
+		System.out.println("=====================");
+		System.out.println("[1. 플레이어목록] [2. 대기중인 플레이어] [3. 플레이어 교체]");
+		System.out.println("[0. 뒤로가기]");
+		int sel = game.inputNumber("메뉴");
+		if (sel == 1)
+			printPlayers();
+		else if (sel == 2)
+			printGuild();
+		else if (sel == 3)
+			changePlayer();
+		else if (sel == 0)
+			return;
+	}
+
 	public void changePlayer() {
 		printPlayers();
 		int index = game.inputNumber("플레이어선택") - 1;
