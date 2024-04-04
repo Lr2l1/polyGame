@@ -5,6 +5,10 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	private int mp;
 	private boolean isStun;
 	private boolean isSilence;
+	static int money;
+	private Item helmet;
+	private Item armor;
+	private Item ring;
 
 	Human(String name, int hp, int mp, int power) {
 		super(name, hp, power);
@@ -12,12 +16,15 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 		this.MAX_MP = mp;
 		this.isStun = false;
 		this.isSilence = false;
+		this.helmet = null;
+		this.armor = null;
+		this.ring = null;
 	}
 
 	public int getMp() {
 		return this.mp;
 	}
-	
+
 	public void setMp(int mp) {
 		this.mp = mp;
 	}
@@ -33,18 +40,42 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	public boolean isSilence() {
 		return this.isSilence;
 	}
-	
+
 	public void setIsSilence() {
 		this.isSilence = !isSilence;
 	}
 
+	public Item getHelmet() {
+		return this.helmet;
+	}
+
+	public void setHelmet(Item helmet) {
+		this.helmet = helmet;
+	}
+
+	public Item getArmor() {
+		return this.armor;
+	}
+
+	public void setArmor(Item armor) {
+		this.armor = armor;
+	}
+
+	public Item getRing() {
+		return this.ring;
+	}
+
+	public void setRing(Item ring) {
+		this.ring = ring;
+	}
+
 	abstract void skill(Unit unit);
-	
+
 	@Override
 	public String toString() {
-		String info = String.format("[%s] %d/%d", getName(), getHp(), getMp());
-//		info += String.format("%s" , isStun() ? " 스턴상태" : "");
-//		info += String.format("%s" , isSilence() ? " 침묵상태" : "");
+		String info = String.format("[%s] HP %d/%d MP %d/%d\n상태이상 : ", getName(), getHp(), MAX_HP, getMp(), MAX_MP);
+		info += String.format("%s", isStun() ? " 스턴상태 /" : "X /");
+		info += String.format("%s", isSilence() ? " 침묵상태" : " X");
 		return info;
 	}
 
