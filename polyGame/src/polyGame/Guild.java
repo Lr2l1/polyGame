@@ -3,7 +3,6 @@ package polyGame;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Guild {
 	private Random ran = new Random();
@@ -126,7 +125,7 @@ public class Guild {
 		for (int i = 0; i < players.size(); i++) {
 			System.out.print("[" + (i + 1) + "번]");
 			System.out.print(" [이름 : " + players.get(i).getName() + "]");
-//		      System.out.print(" [레벨 : " + players.get(i).getLevel()l + "]");
+			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
 			System.out.print(" [체력 : " + players.get(i).getHp());
 			System.out.println(" / " + players.get(i).MAX_HP + "]");
 			System.out.print(" [마나 : " + players.get(i).getMp());
@@ -140,7 +139,7 @@ public class Guild {
 		for (int i = 0; i < guild.size(); i++) {
 			System.out.print("[" + (i + 1) + "번]");
 			System.out.print(" [이름 : " + guild.get(i).getName() + "]");
-//		      System.out.print(" [레벨 : " + players.get(i).getLevel()l + "]");
+			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
 			System.out.print(" [체력 : " + guild.get(i).getHp());
 			System.out.println(" / " + guild.get(i).MAX_HP + "]");
 			System.out.print(" [마나 : " + guild.get(i).getMp());
