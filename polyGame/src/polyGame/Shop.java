@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Shop {
 	ArrayList<Item> items = new ArrayList<Item>();
-	Game game = new Game();
 	Inventory inventory = new Inventory();
 
 	public Shop() {
@@ -66,11 +65,11 @@ public class Shop {
 	public void printMenu() {
 		System.out.println("================");
 		System.out.println("[1]투구 [2]갑옷 [3]반지");
-		int kind = game.inputNumber("메뉴");
+		int kind = Game.inputNumber("메뉴");
 
 		while (true) {
 			if (kind == Item.HELMET) {
-				System.out.println("=========== [헬멧 ============");
+				System.out.println("=========== [헬멧 ] ============");
 			} else if (kind == Item.ARMOR) {
 				System.out.println("========== [방어구] ===========");
 			} else if (kind == Item.RING) {
@@ -80,7 +79,7 @@ public class Shop {
 			System.out.println("------------------------------------");
 			System.out.println("[골드 : ]");
 			System.out.println("구입할 아이템 번호를 입력하세요 [0.뒤로가기]");
-			int selNum = game.inputNumber("메뉴");
+			int selNum = Game.inputNumber("메뉴");
 			if (selNum == 0)
 				break;
 			int count = 0;

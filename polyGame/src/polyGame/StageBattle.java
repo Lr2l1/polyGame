@@ -16,7 +16,6 @@ public class StageBattle extends Stage {
 	private Random ran = new Random();
 	private boolean isExit;
 	private int count;
-	Game game = new Game();
 	SetUnit SetUnit = new SetUnit();
 	Map<Integer, Monster> monsters = new HashMap<>();
 	Map<Integer, Human> players = new HashMap<>();
@@ -25,7 +24,7 @@ public class StageBattle extends Stage {
 	public boolean update() {
 		while (isRun()) {
 			printMenu();
-			int sel = game.inputNumber("메뉴");
+			int sel = Game.inputNumber("메뉴");
 			runMenu(sel);
 		}
 		return false;
@@ -37,7 +36,7 @@ public class StageBattle extends Stage {
 	}
 
 	private int option() {
-		return game.inputNumber("메뉴");
+		return Game.inputNumber("메뉴");
 	}
 
 	private void printMenu() {

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Inventory {
 	ArrayList<Item> items = new ArrayList<Item>();
-	Game game = new Game();
+
 	Guild guild = new Guild();
 
 	public void printMenu() {
 		System.out.println("[1.착용] [2.판매] [0.뒤로가기]");
-		int sel = game.inputNumber("메뉴");
+		int sel = Game.inputNumber("메뉴");
 		if (sel == 0)
 			return;
 		else if (sel == 1)
@@ -30,7 +30,7 @@ public class Inventory {
 	}
 
 	public void wearItem() {
-		int sel = game.inputNumber("플레이어번호");
+		int sel = Game.inputNumber("플레이어번호");
 		guild.printWornItem(sel);
 		
 	}

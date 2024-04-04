@@ -8,8 +8,6 @@ import java.util.Scanner;
 public class Guild {
 	private Random ran = new Random();
 
-	Game game = new Game();
-
 	Map<Integer, Human> players;
 	Map<Integer, Human> guild;
 	String player[] = { "HumanWarrior", "HumanWizard", "HumanHealer" };
@@ -43,7 +41,7 @@ public class Guild {
 		System.out.println("=====================");
 		System.out.println("[1. 플레이어목록] [2. 대기중인 플레이어] [3. 플레이어 교체]");
 		System.out.println("[0. 뒤로가기]");
-		int sel = game.inputNumber("메뉴");
+		int sel = Game.inputNumber("메뉴");
 		if (sel == 1)
 			printPlayers();
 		else if (sel == 2)
@@ -56,14 +54,14 @@ public class Guild {
 
 	public void changePlayer() {
 		printPlayers();
-		int index = game.inputNumber("플레이어선택") - 1;
+		int index = Game.inputNumber("플레이어선택") - 1;
 		if (index < 0 || index >= players.size()) {
 			System.err.println("잘못된 번호입니다.");
 			return;
 		}
 
 		printGuild();
-		int idx = game.inputNumber("길드원") - 1;
+		int idx = Game.inputNumber("길드원") - 1;
 		if (index < 0 || index >= guild.size()) {
 			System.err.println("잘못된 번호입니다.");
 			return;

@@ -1,18 +1,57 @@
 package polyGame;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
 
-	private Scanner scan = new Scanner(System.in);
+	private static Scanner scan = new Scanner(System.in);
 
-	SetUnit SetUnit = new SetUnit();
+	static Game instance = new Game();
+	static String nextStage = "";
 
-	public Game() {
+	String curStage = "";
+
+	Map<String, Stage> stageList = new HashMap<String, Stage>();
+
+	Game() {
 
 	}
 
-	public int inputNumber(String message) {
+	void init() {
+		stageList.put("TITLE", new StageTitle());
+		stageList.put("BATTLE", new StageBattle());
+		stageList.put("LOBBY", new StageLobby());
+		stageList.put("SETTING", new StageSetting());
+		nextStage = "TITLE";
+	}
+
+	boolean changeStage() {
+
+		System.out.println("curStage : " + curStage);
+		System.out.println("nextStage : " + nextStage);
+
+		if (curStage.equals(nextStage))
+			return true;
+
+		curStage = nextStage;
+		Stage stage = stageList.get(curStage);
+		stage.init();
+
+		boolean run = true;
+		while (run) {
+			run = stage.update();
+			if (run == false)
+				break;
+		}
+		if (nextStage.equals(""))
+			return false;
+		else
+			return true;
+	}
+
+	static public int inputNumber(String message) {
 		int number = -1;
 		System.out.print(message + " : ");
 		try {

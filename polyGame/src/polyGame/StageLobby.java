@@ -1,15 +1,19 @@
 package polyGame;
 
 public class StageLobby extends Stage {
-	Game game = new Game();
-
 	@Override
 	public boolean update() {
 
 		while (true) {
-			int select = game.inputNumber("메뉴");
+			System.out.println("=====[LOBBY]=====");
+			System.out.println("[1. 전투] [2. 설정] [0. 종료]");
+			int sel = Game.inputNumber("메뉴");
+			if (sel == 1) {
 
-			if (select == 0)
+			} else if (sel == 2) {
+
+			}
+			if (sel == 0)
 				break;
 		}
 
