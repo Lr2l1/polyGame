@@ -24,7 +24,7 @@ public class Inventory {
 	public void printItem() {
 		System.out.println("========== 인벤토리 =========");
 		for (int i = 0; i < items.size(); i++) {
-			System.out.print("[" + (i + 1) + "번] ");
+			System.out.printf("[ %d번] ", i+1);
 			System.out.printf("[이름 : %s]", items.get(i).name);
 			System.out.printf("[능력 : %s]", items.get(i).power);
 			System.out.println();
@@ -33,14 +33,22 @@ public class Inventory {
 
 	public void wearItem() {
 		guild.printPlayers();
-		int num = Game.inputNumber("플레이어번호");
+		int num = Game.inputNumber("플레이어 번호");
 		guild.printWornItem(num);
 		printItem();
-		if (guild.players.get(num).getHelmet() == null) {
-			
-		} 
-//			guild.players.get(num).setHelmet();
 
+		int itemNum = Game.inputNumber("아이템 번호");
+		if (items.get(itemNum).kind == Item.HELMET && guild.players.get(num).getHelmet() == null) {
+			guild.players.get(num).setHelmet(items.get(itemNum));
+			items.remove(itemNum);
+		} else if (items.get(itemNum).kind == Item.ARMOR && guild.players.get(num).getArmor() == null) {
+			guild.players.get(num).setArmor(items.get(itemNum));
+			items.remove(itemNum);
+		} else if (items.get(itemNum).kind == Item.RING && guild.players.get(num).getRing() == null) {
+			guild.players.get(num).setRing(items.get(itemNum));
+			items.remove(itemNum);
+		} else
+			return;
 	}
 
 	public void removeItem() {
@@ -52,17 +60,14 @@ public class Inventory {
 
 	public void sellItem() {
 		printItem();
-		int num = Game.inputNumber("상품번호")-1;
-		if (num<0 || num>=items.size() )
+		int num = Game.inputNumber("상품번호") - 1;
+		if (num < 0 || num >= items.size())
 			return;
-		
-		Human.money += items.get(num).price/2;
+
+		Human.money += items.get(num).price / 2;
 		items.remove(num);
-		
-		
-		
+
 	}
-	
 
 	public void addItem(Item item) {
 		items.add(item);
