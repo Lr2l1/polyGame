@@ -16,7 +16,7 @@ public class Game {
 	Map<String, Stage> stageList = new HashMap<String, Stage>();
 
 	Game() {
-
+		Human.money = 100000;
 	}
 
 	void init() {
