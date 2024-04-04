@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class SetUnit {
+public class SetMonster {
 	private final int SIZE = 4;
 	private Random ran = new Random();
 
@@ -29,20 +29,4 @@ public class SetUnit {
 		return monsters;
 	}
 
-	public Map<Integer, Human> setPlayer() {
-		players = new HashMap<Integer, Human>();
-
-		for (int i = 0; i < 3; i++) {
-			try {
-				Class<?> clazz = Class.forName("polyGame." + player[i]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
-				Human temp = (Human) obj;
-				players.put(i, temp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		return players;
-	}
 }
