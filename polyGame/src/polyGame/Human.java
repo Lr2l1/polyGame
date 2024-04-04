@@ -71,23 +71,6 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	abstract void skill(Unit unit);
 
-	public void printWornItem() {
-		if (helmet == null) {
-			System.out.println("[헬멧 : 없음 ]");
-		} else {
-			System.out.println("[헬멧 : " + helmet.name + "]");
-		}
-		if (armor == null) {
-			System.out.println("[방어구 : 없음 ]");
-		} else {
-			System.out.println("[방어구 : " + armor.name + "]");
-		}
-		if (ring == null) {
-			System.out.println("[반지 : 없음 ]");
-		} else {
-			System.out.println("[반지 : " + ring.name + "]");
-		}
-	}
 
 	@Override
 	public String toString() {
