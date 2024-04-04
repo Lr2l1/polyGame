@@ -16,7 +16,8 @@ public class StageBattle extends Stage {
 	private Random ran = new Random();
 	private boolean isExit;
 	private int count;
-	SetUnit SetUnit = new SetUnit();
+	SetMonster setMonseter = new SetMonster();
+	Guild guild = new Guild();
 	Map<Integer, Monster> monsters = new HashMap<>();
 	Map<Integer, Human> players = new HashMap<>();
 
@@ -32,7 +33,8 @@ public class StageBattle extends Stage {
 
 	@Override
 	public void init() {
-		players = SetUnit.setPlayer();
+		players = guild.setPlayer();
+		monsters = setMonseter.drawMonster();
 	}
 
 	private int option() {
@@ -46,7 +48,7 @@ public class StageBattle extends Stage {
 
 	private void runMenu(int select) {
 		if (select == BATTLE) {
-			monsters = SetUnit.drawMonster();
+
 			while (isBattle()) {
 				playerInfo();
 				battle();
