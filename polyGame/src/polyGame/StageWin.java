@@ -7,7 +7,7 @@ public class StageWin extends Stage {
 
 	@Override
 	public boolean update() {
-		System.out.println("승리~");
+		System.out.println("전투에서 승리하였어.");
 		levelUp();
 		dropItem();
 
@@ -32,5 +32,7 @@ public class StageWin extends Stage {
 		int dice = ran.nextInt(Shop.itemList.size());
 
 		Inventory.addItem(Shop.itemList.get(dice));
+
+		System.out.printf("주사위가 %d가 나왔어! 보상으로 %s를 획득했어~\n", dice, Shop.itemList.get(dice).name);		
 	}
 }
