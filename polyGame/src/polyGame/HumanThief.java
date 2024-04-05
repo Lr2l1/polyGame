@@ -29,11 +29,11 @@ public class HumanThief extends Human {
 	@Override
 	void skill(Unit enenmy) {
 		Monster monster = (Monster) enenmy;
-		setMp(getMp() - 40);
-		int ranPower = ran.nextInt(super.MAX_POWER);
-//		setPower(ranPower);
-//		System.out.printf("%s가 스킬을 사용하여 %d데미지\n", getName(), getPower());
-//		monster.setHp(monster.getHp() - getPower());
+		setMp(getMp() - 20);
+		int ranPower = ran.nextInt(super.MAX_POWER*2);
+		setPower(ranPower);
+		System.out.printf("%s가 스킬을 사용하여 %d데미지\n", getName(), getPower());
+		monster.setHp(monster.getHp() - getPower());
 
 		if (enenmy.getHp() <= 0) {
 			enenmy.setHp(0);
