@@ -1,7 +1,7 @@
 package polyGame;
 
 public abstract class Human extends Unit implements Stunable, Silenceable, Recoverable {
-	public final int MAX_MP;
+	public int MAX_MP;
 	private int mp;
 	private int level;
 	private boolean isStun;
@@ -27,8 +27,14 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 		return this.level;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void levelUp() {
+		System.out.printf("%s LEVEL UP : lv%d \n" , getName(),this.level+1);
+		this.level = this.level+1;
+		MAX_HP = MAX_HP + 50;
+		this.MAX_MP = MAX_MP + 50;
+		MAX_POWER = MAX_POWER + 10;
+		setHp(MAX_HP);
+		setMp(MAX_HP);
 	}
 
 	public int getMp() {
@@ -61,14 +67,13 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	public void setHelmet(Item helmet) {
 		this.helmet = helmet;
-		setPower(getPower()+helmet.power) ;
+		setPower(getPower() + helmet.power);
 	}
+
 	public void removeHelmet() {
-		setPower(getPower()-helmet.power) ;
+		setPower(getPower() - helmet.power);
 		this.helmet = null;
 	}
-	
-	
 
 	public Item getArmor() {
 		return this.armor;
@@ -90,7 +95,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	@Override
 	public String toString() {
-		String info = String.format("[%s] HP %d/%d MP %d/%d\n상태이상 : ", getName(), getHp(), MAX_HP, getMp(), MAX_MP);
+		String info = String.format("[lv%d %s] HP %d/%d MP %d/%d\n상태이상 : ", level,getName(), getHp(), MAX_HP, getMp(), MAX_MP);
 		info += String.format("%s", isStun() ? " 스턴상태 /" : "X /");
 		info += String.format("%s", isSilence() ? " 침묵상태" : " X");
 		return info;
