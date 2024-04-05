@@ -25,7 +25,7 @@ public class Game {
 		stageList.put("LOBBY", new StageLobby());
 		stageList.put("SETTING", new StageSetting());
 		stageList.put("WIN", new StageWin());
-		nextStage = "LOBBY";
+		nextStage = "TITLE";
 	}
 
 	boolean changeStage() {
