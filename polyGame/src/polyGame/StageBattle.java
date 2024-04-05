@@ -116,18 +116,7 @@ public class StageBattle extends Stage {
 	}
 
 	private void skill(Human human) {
-		if (human.equals(Guild.players.get(0))) {
-			int dice = ran.nextInt(SIZE);
-			human.skill(monsters.get(dice));
-		} else if (human.equals(Guild.players.get(1))) {
-			for (int i = 0; i < SIZE; i++) {
-				if (!monsters.get(i).isDead())
-					human.skill(monsters.get(i));
-			}
-		} else if (human.equals(Guild.players.get(2))) {
-			for (int i = 0; i < 3; i++)
-				human.skill(Guild.players.get(i));
-		}
+		human.skill();
 	}
 
 	private void attackMonster() {
