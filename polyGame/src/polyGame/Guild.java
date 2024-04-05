@@ -152,6 +152,7 @@ public class Guild {
 	}
 
 	public void printWornItem(int num) {
+		System.out.printf("[%s] 착용 아이템\n", players.get(num).getName());
 		if (players.get(num).getHelmet() == null) {
 			System.out.println("[헬멧 : 없음 ]");
 		} else {
