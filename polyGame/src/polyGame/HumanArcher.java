@@ -43,7 +43,7 @@ public class HumanArcher extends Human {
 	@Override
 	public void stun() {
 		System.out.println("한턴동안 스턴");
-		setIsStun();
+		setIsStun(true);
 	}
 
 	@Override

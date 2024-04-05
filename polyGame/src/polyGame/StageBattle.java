@@ -92,7 +92,7 @@ public class StageBattle extends Stage {
 				runBattle(option(), Guild.players.get(i));
 			} else if (Guild.players.get(i).isStun()) {
 				System.err.println("스턴상태에서는 행동이 불가능합니다.");
-				Guild.players.get(i).setIsStun();
+				Guild.players.get(i).setIsStun(false);
 			}
 		}
 	}
