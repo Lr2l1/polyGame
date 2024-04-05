@@ -18,11 +18,11 @@ public class StageSetting extends Stage {
 			} else if (sel == 2) {
 				shop.printMenu();
 			} else if (sel == 3) {
-				inventory.printItem();
+				inventory.printMenu();
 			} else if (sel == 4) {
-
+				FileData.save();
 			} else if (sel == 5) {
-
+				FileData.load();
 			} else if (sel == 0) {
 				Game.nextStage = "LOBBY";
 				isRun = false;

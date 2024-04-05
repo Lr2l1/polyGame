@@ -8,7 +8,7 @@ public class Guild {
 	private Random ran = new Random();
 
 	static Map<Integer, Human> players;
-	Map<Integer, Human> guild;
+	static Map<Integer, Human> guild;
 	String player[] = { "HumanWarrior", "HumanWizard", "HumanHealer" };
 	String human[] = { "HumanArcher", "HumanThief", "HumanMonk", "HumanDruid" };
 
@@ -17,7 +17,7 @@ public class Guild {
 	public Guild() {
 		players = new HashMap<>();
 		guild = new HashMap<>();
-		this.count = 0;
+		this.count = guild.size();
 
 		players = setPlayer();
 	}

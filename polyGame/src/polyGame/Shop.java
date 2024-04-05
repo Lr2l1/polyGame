@@ -3,7 +3,7 @@ package polyGame;
 import java.util.ArrayList;
 
 public class Shop {
-	ArrayList<Item> itemList = new ArrayList<Item>();
+	static ArrayList<Item> itemList = new ArrayList<Item>();
 
 	public Shop() {
 		Item item = new Item();
