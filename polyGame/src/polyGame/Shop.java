@@ -3,8 +3,7 @@ package polyGame;
 import java.util.ArrayList;
 
 public class Shop {
-	ArrayList<Item> items = new ArrayList<Item>();
-	Inventory inventory = new Inventory();
+	ArrayList<Item> itemList = new ArrayList<Item>();
 
 	public Shop() {
 		Item item = new Item();
@@ -12,63 +11,63 @@ public class Shop {
 		item.name = "가죽투구";
 		item.power = 5;
 		item.price = 2500;
-		items.add(item);
-		
+		itemList.add(item);
+
 		item = new Item();
 		item.kind = Item.HELMET;
 		item.name = "철투구";
 		item.power = 10;
 		item.price = 5000;
-		items.add(item);
+		itemList.add(item);
 
 		item = new Item();
 		item.kind = Item.HELMET;
 		item.name = "다이아 투구";
 		item.power = 15;
 		item.price = 8000;
-		items.add(item);
+		itemList.add(item);
 
 		item = new Item();
 		item.kind = Item.ARMOR;
 		item.name = "가죽갑옷";
 		item.power = 5;
 		item.price = 2500;
-		items.add(item);
+		itemList.add(item);
 
 		item = new Item();
 		item.kind = Item.ARMOR;
 		item.name = "철 갑옷";
 		item.power = 10;
 		item.price = 5000;
-		items.add(item);
+		itemList.add(item);
 
 		item = new Item();
 		item.kind = Item.ARMOR;
 		item.name = "다이아 갑옷";
 		item.power = 15;
 		item.price = 8000;
-		items.add(item);
+		itemList.add(item);
 
 		item = new Item();
 		item.kind = Item.RING;
 		item.name = "실반지";
 		item.power = 7;
 		item.price = 3000;
-		items.add(item);
+		itemList.add(item);
 
 		item = new Item();
 		item.kind = Item.RING;
 		item.name = "금반지";
 		item.power = 17;
 		item.price = 6000;
-		items.add(item);
+		itemList.add(item);
 
 		item = new Item();
 		item.kind = Item.RING;
 		item.name = "다이아반지";
 		item.power = 35;
 		item.price = 15000;
-		items.add(item);
+		itemList.add(item);
 	}
 
 	public void printMenu() {
@@ -92,13 +91,13 @@ public class Shop {
 			if (selNum == 0)
 				break;
 			int count = 0;
-			for (int i = 0; i < items.size(); i++) {
-				if (items.get(i).kind == sel) {
+			for (int i = 0; i < itemList.size(); i++) {
+				if (itemList.get(i).kind == sel) {
 					count += 1;
 					if (count == selNum) {
-						inventory.addItem(items.get(i));
-						Human.money -= items.get(i).price;
-						System.out.printf("[%s] 을 구입했습니다\n.", items.get(i).name);
+						Inventory.addItem(itemList.get(i));
+						Human.money -= itemList.get(i).price;
+						System.out.printf("[%s] 을 구입했습니다\n.", itemList.get(i).name);
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
@@ -113,13 +112,13 @@ public class Shop {
 
 	private void printItem(int sel) {
 		int count = 0;
-		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).kind != sel)
+		for (int i = 0; i < itemList.size(); i++) {
+			if (itemList.get(i).kind != sel)
 				continue;
 			System.out.printf("[ %s번] ", count + 1);
-			System.out.printf("[이름 : %s] ", items.get(i).name);
-			System.out.printf("[능력 : %s] ", items.get(i).power);
-			System.out.printf("[가격 : %s] ", items.get(i).price);
+			System.out.printf("[이름 : %s] ", itemList.get(i).name);
+			System.out.printf("[능력 : %s] ", itemList.get(i).power);
+			System.out.printf("[가격 : %s] ", itemList.get(i).price);
 			System.out.println();
 			count++;
 		}
