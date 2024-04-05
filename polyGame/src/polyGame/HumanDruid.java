@@ -27,7 +27,7 @@ public class HumanDruid extends Human {
 
 	@Override
 	void skill(Unit unit) {
-
+		
 	}
 
 	@Override
