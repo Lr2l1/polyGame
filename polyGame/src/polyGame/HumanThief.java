@@ -26,6 +26,10 @@ public class HumanThief extends Human {
 		}
 
 	}
+	
+	@Override
+	void skill() {
+	}
 
 	@Override
 	void skill(Unit enenmy) {

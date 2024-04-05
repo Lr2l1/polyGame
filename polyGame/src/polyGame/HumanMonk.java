@@ -44,6 +44,10 @@ public class HumanMonk extends Human {
 			enenmy.setIsDead(true);
 		}
 	}
+	
+	@Override
+	void skill() {
+	}
 
 	@Override
 	public void stun() {

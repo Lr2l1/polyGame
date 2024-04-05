@@ -41,6 +41,10 @@ public class HumanWizard extends Human {
 			enenmy.setIsDead(true);
 		}
 	}
+	
+	@Override
+	void skill() {
+	}
 
 	@Override
 	public void stun() {

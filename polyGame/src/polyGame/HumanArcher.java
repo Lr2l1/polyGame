@@ -40,6 +40,10 @@ public class HumanArcher extends Human {
 			enenmy.setIsDead(true);
 		}
 	}
+	
+	@Override
+	void skill() {
+	}
 
 	@Override
 	public void stun() {
@@ -57,4 +61,6 @@ public class HumanArcher extends Human {
 	public void recover() {
 		setHp(getHp() + 50);
 	}
+
+	
 }

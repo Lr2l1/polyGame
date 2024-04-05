@@ -45,6 +45,10 @@ public class HumanWarrior extends Human {
 			monster.setIsDead(true);
 		}
 	}
+	
+	@Override
+	void skill() {
+	}
 
 	@Override
 	public void stun() {
