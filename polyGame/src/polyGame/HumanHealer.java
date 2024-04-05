@@ -28,14 +28,21 @@ public class HumanHealer extends Human {
 
 	@Override
 	void skill(Unit unit) {
-		Human human = (Human) unit;
-		setMp(getMp() - 50);
-		System.out.printf("%s가 스킬을 사용하여 아군의 체력 50을 회복\n", getName());
+		
+	}
+	
+	@Override
+	void skill() {
+		for (int i = 0; i < Guild.players.size(); i++) {
+			Human human = Guild.players.get(i);
+			setMp(getMp() - 50);
+			System.out.printf("%s가 스킬을 사용하여 아군의 체력 50을 회복\n", getName());
 
-		human.recover();
+			human.recover();
 
-		if (human.getHp() >= human.MAX_HP) {
-			human.setHp(human.MAX_HP);
+			if (human.getHp() >= human.MAX_HP) {
+				human.setHp(human.MAX_HP);
+			}
 		}
 	}
 
@@ -55,4 +62,6 @@ public class HumanHealer extends Human {
 	public void recover() {
 		setHp(getHp() + 50);
 	}
+
+	
 }
