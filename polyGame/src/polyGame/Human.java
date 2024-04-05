@@ -10,7 +10,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	private Item helmet;
 	private Item armor;
 	private Item ring;
-	
+
 	public String className;
 
 	Human(String name, int level, int hp, int mp, int power) {
@@ -30,15 +30,15 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	}
 
 	public void levelUp() {
-		System.out.printf("%s LEVEL UP : lv%d \n" , getName(),this.level+1);
-		this.level = this.level+1;
+		System.out.printf("%s LEVEL UP : lv%d \n", getName(), this.level + 1);
+		this.level = this.level + 1;
 		MAX_HP = MAX_HP + 50;
 		this.MAX_MP = MAX_MP + 50;
 		MAX_POWER = MAX_POWER + 10;
 		setHp(MAX_HP);
 		setMp(MAX_HP);
 	}
-	
+
 	public void setLevel(int level) {
 		this.level = level;
 	}
@@ -99,9 +99,12 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	abstract void skill(Unit unit);
 
+	abstract void skill();
+
 	@Override
 	public String toString() {
-		String info = String.format("[lv%d %s] HP %d/%d MP %d/%d\n상태이상 : ", level,getName(), getHp(), MAX_HP, getMp(), MAX_MP);
+		String info = String.format("[lv%d %s] HP %d/%d MP %d/%d\n상태이상 : ", level, getName(), getHp(), MAX_HP, getMp(),
+				MAX_MP);
 		info += String.format("%s", isStun() ? " 스턴상태 /" : "X /");
 		info += String.format("%s", isSilence() ? " 침묵상태" : " X");
 		return info;
