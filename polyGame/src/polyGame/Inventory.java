@@ -3,7 +3,7 @@ package polyGame;
 import java.util.ArrayList;
 
 public class Inventory {
-	ArrayList<Item> items = new ArrayList<Item>();
+	static ArrayList<Item> items = new ArrayList<Item>();
 
 	Guild guild = new Guild();
 
@@ -24,7 +24,7 @@ public class Inventory {
 	public void printItem() {
 		System.out.println("========== 인벤토리 =========");
 		for (int i = 0; i < items.size(); i++) {
-			System.out.printf("[ %d번] ", i+1);
+			System.out.printf("[ %d번] ", i + 1);
 			System.out.printf("[이름 : %s]", items.get(i).name);
 			System.out.printf("[능력 : %s]", items.get(i).power);
 			System.out.println();
@@ -33,11 +33,11 @@ public class Inventory {
 
 	public void wearItem() {
 		guild.printPlayers();
-		int num = Game.inputNumber("플레이어 번호");
+		int num = Game.inputNumber("플레이어 번호")-1;
 		guild.printWornItem(num);
 		printItem();
 
-		int itemNum = Game.inputNumber("아이템 번호");
+		int itemNum = Game.inputNumber("아이템 번호")-1;
 		if (items.get(itemNum).kind == Item.HELMET && guild.players.get(num).getHelmet() == null) {
 			guild.players.get(num).setHelmet(items.get(itemNum));
 			items.remove(itemNum);
@@ -53,7 +53,7 @@ public class Inventory {
 
 	public void removeItem() {
 		guild.printPlayers();
-		int sel = Game.inputNumber("플레이어번호");
+		int sel = Game.inputNumber("플레이어번호")-1;
 		guild.printWornItem(sel);
 
 	}
@@ -69,7 +69,7 @@ public class Inventory {
 
 	}
 
-	public void addItem(Item item) {
+	static public void addItem(Item item) {
 		items.add(item);
 	}
 }
