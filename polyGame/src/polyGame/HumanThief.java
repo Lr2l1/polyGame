@@ -21,7 +21,7 @@ public class HumanThief extends Human {
 
 		if (monster.getHp() <= 0) {
 			monster.setHp(0);
-			monster.setIsDead();
+			monster.setIsDead(true);
 		}
 
 	}
@@ -37,7 +37,7 @@ public class HumanThief extends Human {
 
 		if (enenmy.getHp() <= 0) {
 			enenmy.setHp(0);
-			enenmy.setIsDead();
+			enenmy.setIsDead(true);
 		}
 	}
 

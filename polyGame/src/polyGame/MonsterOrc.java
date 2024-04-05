@@ -24,7 +24,7 @@ public class MonsterOrc extends Monster {
 
 		if (human.getHp() <= 0) {
 			human.setHp(0);
-			human.setIsDead();
+			human.setIsDead(true);
 		}
 	}
 }

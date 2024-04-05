@@ -1,8 +1,8 @@
 		package polyGame;
 
 public abstract class Unit {
-	public final int MAX_HP;
-	public final int MAX_POWER;
+	public int MAX_HP;
+	public int MAX_POWER;
 	private String name;
 	private int hp;
 	private int power;
@@ -41,8 +41,8 @@ public abstract class Unit {
 		return this.isDead;
 	}
 
-	public void setIsDead() {
-		this.isDead = !isDead;
+	public void setIsDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 
 	abstract void attack(Unit enenmy);

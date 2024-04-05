@@ -21,7 +21,7 @@ public class HumanHealer extends Human {
 
 		if (monster.getHp() <= 0) {
 			monster.setHp(0);
-			monster.setIsDead();
+			monster.setIsDead(true);
 		}
 	}
 

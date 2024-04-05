@@ -23,7 +23,7 @@ public class HumanMonk extends Human {
 
 		if (monster.getHp() <= 0) {
 			monster.setHp(0);
-			monster.setIsDead();
+			monster.setIsDead(true);
 		}
 
 	}
@@ -40,7 +40,7 @@ public class HumanMonk extends Human {
 
 		if (enenmy.getHp() <= 0) {
 			enenmy.setHp(0);
-			enenmy.setIsDead();
+			enenmy.setIsDead(true);
 		}
 	}
 
