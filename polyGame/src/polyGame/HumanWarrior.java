@@ -7,6 +7,7 @@ public class HumanWarrior extends Human {
 
 	HumanWarrior() {
 		super("전사", 1, 1000, 200, 80);
+		super.className = "HumanWarrior";
 	}
 
 	@Override

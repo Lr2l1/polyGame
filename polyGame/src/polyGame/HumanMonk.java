@@ -7,6 +7,7 @@ public class HumanMonk extends Human {
 
 	HumanMonk() {
 		super("뭉크", 1, 800, 800, 100);
+		super.className = "HumanMonk";
 	}
 
 	@Override

@@ -7,6 +7,7 @@ public class HumanDruid extends Human {
 
 	HumanDruid() {
 		super("드루이드", 1, 600, 1000, 150);
+		super.className = "HumanDruid";
 	}
 
 	@Override

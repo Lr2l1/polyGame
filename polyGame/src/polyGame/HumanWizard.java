@@ -7,6 +7,7 @@ public class HumanWizard extends Human {
 
 	HumanWizard() {
 		super("법사", 1, 800, 400, 70);
+		super.className = "HumanWizard";
 	}
 
 	@Override

@@ -7,6 +7,7 @@ public class HumanHealer extends Human {
 
 	HumanHealer() {
 		super("힐러", 1, 500, 500, 50);
+		super.className = "HumanHealer";
 	}
 
 	@Override

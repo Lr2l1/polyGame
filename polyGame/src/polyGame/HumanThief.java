@@ -7,6 +7,7 @@ public class HumanThief extends Human {
 
 	HumanThief() {
 		super("도적", 1, 600, 300, 70);
+		super.className = "HumanThief";
 	}
 
 	@Override

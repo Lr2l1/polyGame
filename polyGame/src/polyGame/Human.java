@@ -10,6 +10,8 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	private Item helmet;
 	private Item armor;
 	private Item ring;
+	
+	public String className;
 
 	Human(String name, int level, int hp, int mp, int power) {
 		super(name, hp, power);

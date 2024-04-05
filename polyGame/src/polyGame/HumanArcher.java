@@ -7,6 +7,7 @@ public class HumanArcher extends Human {
 
 	HumanArcher() {
 		super("아처", 1, 700, 400, 50);
+		super.className = "HumanArcher";
 	}
 
 	@Override
