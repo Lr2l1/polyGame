@@ -15,7 +15,7 @@ public class StageBattle extends Stage {
 
 	private Random ran = new Random();
 	private boolean isExit;
-	private int count;
+	private boolean isWin;
 	SetMonster setMonseter = new SetMonster();
 	Guild guild = new Guild();
 	Map<Integer, Monster> monsters = new HashMap<>();
@@ -23,11 +23,16 @@ public class StageBattle extends Stage {
 
 	@Override
 	public boolean update() {
-		while (isRun()) {
+		isExit = false;
+		while (!isExit) {
 			printMenu();
 			int sel = Game.inputNumber("메뉴");
 			runMenu(sel);
 		}
+		if (isWin)
+			Game.nextStage = "WIN";
+		else
+			Game.nextStage = "LOBBY";
 		return false;
 	}
 
@@ -48,8 +53,7 @@ public class StageBattle extends Stage {
 
 	private void runMenu(int select) {
 		if (select == BATTLE) {
-
-			while (isBattle()) {
+			while (!isExit) {
 				playerInfo();
 				battle();
 				attackMonster();
@@ -76,6 +80,13 @@ public class StageBattle extends Stage {
 
 	private void battle() {
 		for (int i = 0; i < players.size(); i++) {
+			int monDead = checkMonster();
+			if (monDead == monsters.size()) {
+				isWin = true;
+				isExit = true;
+				return;
+			}
+
 			if (!players.get(i).isStun()) {
 				printBattleMenu();
 				runBattle(option(), players.get(i));
@@ -91,17 +102,16 @@ public class StageBattle extends Stage {
 			attack(human);
 		else if (select == SKILL && !human.isSilence())
 			skill(human);
+
 	}
 
 	private void attack(Human human) {
-
 		while (true) {
 			int dice = ran.nextInt(monsters.size());
 			if (!monsters.get(dice).isDead()) {
 				human.attack(monsters.get(dice));
 				return;
 			}
-
 		}
 	}
 
@@ -132,22 +142,22 @@ public class StageBattle extends Stage {
 		isExit = true;
 	}
 
-	private boolean isBattle() {
-		for (int i = 0; i < players.size(); i++) {
-			if (players.get(i).isDead())
-				return false;
+	private int checkMonster() {
+		int count = 0;
+		for (int i = 0; i < monsters.size(); i++) {
+			if (monsters.get(i).isDead())
+				count++;
 		}
-
-		for (int i = 0; i < SIZE; i++) {
-			if (!monsters.get(i).isDead())
-				return true;
-		}
-
-		return false;
+		return count;
 	}
 
-	private boolean isRun() {
-		return isExit || count == 5 ? false : true;
+	private int checkPlayer() {
+		int count = 0;
+		for (int i = 0; i < players.size(); i++) {
+			if (players.get(i).isDead())
+				count++;
+		}
+		return count;
 	}
 
 }
