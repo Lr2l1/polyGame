@@ -33,28 +33,45 @@ public class Inventory {
 
 	public void wearItem() {
 		guild.printPlayers();
-		int num = Game.inputNumber("플레이어 번호")-1;
+		int num = Game.inputNumber("플레이어 번호") - 1;
 		guild.printWornItem(num);
 		printItem();
 
-		int itemNum = Game.inputNumber("아이템 번호")-1;
+		int itemNum = Game.inputNumber("아이템 번호") - 1;
 		if (items.get(itemNum).kind == Item.HELMET && guild.players.get(num).getHelmet() == null) {
 			guild.players.get(num).setHelmet(items.get(itemNum));
 			items.remove(itemNum);
+			System.out.printf("%s 착용완료\n", guild.players.get(num).getHelmet().name);
 		} else if (items.get(itemNum).kind == Item.ARMOR && guild.players.get(num).getArmor() == null) {
 			guild.players.get(num).setArmor(items.get(itemNum));
 			items.remove(itemNum);
+			System.out.printf("%s 착용완료\n", guild.players.get(num).getArmor().name);
 		} else if (items.get(itemNum).kind == Item.RING && guild.players.get(num).getRing() == null) {
 			guild.players.get(num).setRing(items.get(itemNum));
 			items.remove(itemNum);
+			System.out.printf("%s 착용완료\n", guild.players.get(num).getRing().name);
 		} else
 			return;
+		
+
 	}
 
 	public void removeItem() {
 		guild.printPlayers();
-		int sel = Game.inputNumber("플레이어번호")-1;
-		guild.printWornItem(sel);
+		int num = Game.inputNumber("플레이어 번호") - 1;
+		guild.printWornItem(num);
+		int itemNum = Game.inputNumber("착용 해제 할 아이템 [1. 헬멧] [2. 갑옷] [3. 반지]");
+		if (itemNum == Item.HELMET && guild.players.get(num).getHelmet() != null) {
+			items.add(guild.players.get(num).getHelmet());
+			guild.players.get(num).setHelmet(null);
+		} else if (itemNum == Item.ARMOR && guild.players.get(num).getArmor() != null) {
+			items.add(guild.players.get(num).getArmor());
+			guild.players.get(num).setArmor(null);
+		} else if (itemNum == Item.RING && guild.players.get(num).getRing() != null) {
+			items.add(guild.players.get(num).getRing());
+			guild.players.get(num).setRing(null);
+		} else
+			return;
 
 	}
 
