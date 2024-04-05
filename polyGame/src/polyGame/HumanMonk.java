@@ -53,7 +53,7 @@ public class HumanMonk extends Human {
 	@Override
 	public void silence() {
 		System.out.println("한턴동안 침묵");
-		setIsSilence();
+		setIsSilence(true);
 	}
 
 	@Override

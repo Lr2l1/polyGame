@@ -57,8 +57,8 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 		return this.isSilence;
 	}
 
-	public void setIsSilence() {
-		this.isSilence = !isSilence;
+	public void setIsSilence(boolean isSilence) {
+		this.isSilence = isSilence;
 	}
 
 	public Item getHelmet() {
