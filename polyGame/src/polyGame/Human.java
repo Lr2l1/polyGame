@@ -61,7 +61,14 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	public void setHelmet(Item helmet) {
 		this.helmet = helmet;
+		setPower(getPower()+helmet.power) ;
 	}
+	public void removeHelmet() {
+		setPower(getPower()-helmet.power) ;
+		this.helmet = null;
+	}
+	
+	
 
 	public Item getArmor() {
 		return this.armor;
