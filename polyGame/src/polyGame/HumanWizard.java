@@ -29,21 +29,24 @@ public class HumanWizard extends Human {
 
 	@Override
 	void skill(Unit enenmy) {
-		Monster monster = (Monster) enenmy;
-		setMp(getMp() - 40);
-		int ranPower = ran.nextInt(super.MAX_POWER);
-		setPower(ranPower);
-		System.out.printf("%s가 스킬을 사용하여 %d데미지\n", getName(), getPower());
-		monster.setHp(monster.getHp() - getPower());
 
-		if (enenmy.getHp() <= 0) {
-			enenmy.setHp(0);
-			enenmy.setIsDead(true);
-		}
 	}
-	
+
 	@Override
 	void skill() {
+		for (int i = 0; i < StageBattle.monsters.size(); i++) {
+			Monster monster = StageBattle.monsters.get(i);
+			setMp(getMp() - 40);
+			setPower(super.MAX_POWER);
+			System.out.printf("%s가 스킬을 사용하여 %d데미지\n", getName(), getPower());
+			monster.setHp(monster.getHp() - getPower());
+
+			if (monster.getHp() <= 0) {
+				monster.setHp(0);
+				monster.setIsDead(true);
+			}
+		}
+
 	}
 
 	@Override
