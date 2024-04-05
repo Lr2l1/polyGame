@@ -38,6 +38,10 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 		setHp(MAX_HP);
 		setMp(MAX_HP);
 	}
+	
+	public void setLevel(int level) {
+		this.level = level;
+	}
 
 	public int getMp() {
 		return this.mp;
