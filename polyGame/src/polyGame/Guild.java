@@ -7,7 +7,7 @@ import java.util.Random;
 public class Guild {
 	private Random ran = new Random();
 
-	Map<Integer, Human> players;
+	static Map<Integer, Human> players;
 	Map<Integer, Human> guild;
 	String player[] = { "HumanWarrior", "HumanWizard", "HumanHealer" };
 	String human[] = { "HumanArcher", "HumanThief", "HumanMonk", "HumanDruid" };
@@ -23,17 +23,20 @@ public class Guild {
 	}
 
 	public Map<Integer, Human> setPlayer() {
-		for (int i = 0; i < 3; i++) {
-			try {
-				Class<?> clazz = Class.forName("polyGame." + player[i]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
-				Human temp = (Human) obj;
-				players.put(i, temp);
-			} catch (Exception e) {
-				e.printStackTrace();
+		if (players.size() == 0) {
+			for (int i = 0; i < 3; i++) {
+				try {
+					Class<?> clazz = Class.forName("polyGame." + player[i]);
+					Object obj = clazz.getDeclaredConstructor().newInstance();
+					Human temp = (Human) obj;
+					players.put(i, temp);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		return players;
+			return players;
+		} else
+			return players;
 	}
 
 	public void printMenu() {
