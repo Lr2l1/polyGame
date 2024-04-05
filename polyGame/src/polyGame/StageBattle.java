@@ -18,7 +18,7 @@ public class StageBattle extends Stage {
 	private boolean isWin;
 	SetMonster setMonseter = new SetMonster();
 	Guild guild = new Guild();
-	Map<Integer, Monster> monsters = new HashMap<>();
+	static Map<Integer, Monster> monsters = new HashMap<>();
 
 	@Override
 	public boolean update() {
