@@ -52,7 +52,6 @@ public class Inventory {
 			System.out.printf("%s 착용완료\n", guild.players.get(num).getRing().name);
 		} else
 			return;
-		
 
 	}
 
@@ -63,13 +62,13 @@ public class Inventory {
 		int itemNum = Game.inputNumber("착용 해제 할 아이템 [1. 헬멧] [2. 갑옷] [3. 반지]");
 		if (itemNum == Item.HELMET && guild.players.get(num).getHelmet() != null) {
 			items.add(guild.players.get(num).getHelmet());
-			guild.players.get(num).setHelmet(null);
+			guild.players.get(num).removeHelmet();
 		} else if (itemNum == Item.ARMOR && guild.players.get(num).getArmor() != null) {
 			items.add(guild.players.get(num).getArmor());
-			guild.players.get(num).setArmor(null);
+			guild.players.get(num).removeHelmet();
 		} else if (itemNum == Item.RING && guild.players.get(num).getRing() != null) {
 			items.add(guild.players.get(num).getRing());
-			guild.players.get(num).setRing(null);
+			guild.players.get(num).removeHelmet();
 		} else
 			return;
 
