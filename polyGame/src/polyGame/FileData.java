@@ -28,18 +28,27 @@ public class FileData {
 				gameData += Guild.players.get(i).isStun() + "/";
 				gameData += Guild.players.get(i).isSilence() + "/";
 
-				if (Guild.players.get(i).getHelmet() != null)
-					gameData += Guild.players.get(i).getHelmet().name + "/";
-				else if (Guild.players.get(i).getHelmet() == null)
-					gameData += null + "/";
-				if (Guild.players.get(i).getArmor() != null)
-					gameData += Guild.players.get(i).getArmor().name + "/";
-				else if (Guild.players.get(i).getArmor() == null)
-					gameData += null + "/";
-				if (Guild.players.get(i).getRing() != null)
-					gameData += Guild.players.get(i).getRing().name;
-				else if (Guild.players.get(i).getRing() == null)
-					gameData += null;
+				if (Guild.players.get(i).getHelmet() != null) {
+					gameData += Guild.players.get(i).getHelmet().kind + ",";
+					gameData += Guild.players.get(i).getHelmet().name + ",";
+					gameData += Guild.players.get(i).getHelmet().power + ",";
+					gameData += Guild.players.get(i).getHelmet().price + "/";
+				} else if (Guild.players.get(i).getHelmet() == null)
+					gameData += Guild.players.get(i).getHelmet() + "/";
+				if (Guild.players.get(i).getArmor() != null) {
+					gameData += Guild.players.get(i).getArmor().kind + ",";
+					gameData += Guild.players.get(i).getArmor().name + ",";
+					gameData += Guild.players.get(i).getArmor().power + ",";
+					gameData += Guild.players.get(i).getArmor().price + "/";
+				} else if (Guild.players.get(i).getArmor() == null)
+					gameData += Guild.players.get(i).getArmor() + "/";
+				if (Guild.players.get(i).getRing() != null) {
+					gameData += Guild.players.get(i).getRing().kind + ",";
+					gameData += Guild.players.get(i).getRing().name + ",";
+					gameData += Guild.players.get(i).getRing().power + ",";
+					gameData += Guild.players.get(i).getRing().price;
+				} else if (Guild.players.get(i).getRing() == null)
+					gameData += Guild.players.get(i).getRing();
 				gameData += "\n";
 			}
 
@@ -56,9 +65,27 @@ public class FileData {
 				gameData += Guild.guild.get(i).MAX_MP + "/";
 				gameData += Guild.guild.get(i).isStun() + "/";
 				gameData += Guild.guild.get(i).isSilence() + "/";
-				gameData += Guild.guild.get(i).getHelmet().name + "/";
-				gameData += Guild.guild.get(i).getArmor().name + "/";
-				gameData += Guild.guild.get(i).getRing().name;
+				if (Guild.guild.get(i).getHelmet() != null) {
+					gameData += Guild.guild.get(i).getHelmet().kind + ",";
+					gameData += Guild.guild.get(i).getHelmet().name + ",";
+					gameData += Guild.guild.get(i).getHelmet().power + ",";
+					gameData += Guild.guild.get(i).getHelmet().price + "/";
+				} else if (Guild.guild.get(i).getHelmet() == null)
+					gameData += Guild.guild.get(i).getHelmet() + "/";
+				if (Guild.guild.get(i).getArmor() != null) {
+					gameData += Guild.guild.get(i).getArmor().kind + ",";
+					gameData += Guild.guild.get(i).getArmor().name + ",";
+					gameData += Guild.guild.get(i).getArmor().power + ",";
+					gameData += Guild.guild.get(i).getArmor().price + "/";
+				} else if (Guild.guild.get(i).getArmor() == null)
+					gameData += Guild.guild.get(i).getArmor() + "/";
+				if (Guild.guild.get(i).getRing() != null) {
+					gameData += Guild.guild.get(i).getRing().kind + ",";
+					gameData += Guild.guild.get(i).getRing().name + ",";
+					gameData += Guild.guild.get(i).getRing().power + ",";
+					gameData += Guild.guild.get(i).getRing().price;
+				} else if (Guild.guild.get(i).getRing() == null)
+					gameData += Guild.guild.get(i).getRing();
 				gameData += "\n";
 			}
 
@@ -119,27 +146,50 @@ public class FileData {
 					boolean isSilence = data.equals("false") ? false : true;
 					Guild.players.get(i).setIsSilence(isSilence);
 
-					if (playerArr[11] != null)
-						for (int j = 0; j < Shop.itemList.size(); j++) {
-							if (playerArr[11].equals(Shop.itemList.get(i).name)) {
-								Item item = Shop.itemList.get(i);
-								Guild.players.get(i).setHelmet(item);
-							}
-						}
-					if (playerArr[12] != null)
-						for (int j = 0; j < Shop.itemList.size(); j++) {
-							if (playerArr[11].equals(Shop.itemList.get(i).name)) {
-								Item item = Shop.itemList.get(i);
-								Guild.players.get(i).setArmor(item);
-							}
-						}
-					if (playerArr[13] != null)
-						for (int j = 0; j < Shop.itemList.size(); j++) {
-							if (playerArr[11].equals(Shop.itemList.get(i).name)) {
-								Item item = Shop.itemList.get(i);
-								Guild.players.get(i).setRing(item);
-							}
-						}
+					if (!playerArr[11].equals("null")) {
+						String playerItem[] = playerArr[11].split(",");
+						Item item = new Item();
+						int itemKind = Integer.parseInt(playerItem[0]);
+						String itemName = playerItem[1];
+						int itemPower = Integer.parseInt(playerItem[2]);
+						int itemPrice = Integer.parseInt(playerItem[3]);
+
+						item.kind = itemKind;
+						item.name = itemName;
+						item.power = itemPower;
+						item.price = itemPrice;
+						Guild.players.get(i).setHelmet(item);
+					}
+
+					if (!playerArr[12].equals("null")) {
+						String playerItem[] = playerArr[12].split(",");
+						Item item = new Item();
+						int itemKind = Integer.parseInt(playerItem[0]);
+						String itemName = playerItem[1];
+						int itemPower = Integer.parseInt(playerItem[2]);
+						int itemPrice = Integer.parseInt(playerItem[3]);
+
+						item.kind = itemKind;
+						item.name = itemName;
+						item.power = itemPower;
+						item.price = itemPrice;
+						Guild.players.get(i).setArmor(item);
+					}
+
+					if (!playerArr[13].equals("null")) {
+						String playerItem[] = playerArr[13].split(",");
+						Item item = new Item();
+						int itemKind = Integer.parseInt(playerItem[0]);
+						String itemName = playerItem[1];
+						int itemPower = Integer.parseInt(playerItem[2]);
+						int itemPrice = Integer.parseInt(playerItem[3]);
+
+						item.kind = itemKind;
+						item.name = itemName;
+						item.power = itemPower;
+						item.price = itemPrice;
+						Guild.players.get(i).setRing(item);
+					}
 				}
 
 				Guild.guild.clear();
@@ -173,27 +223,50 @@ public class FileData {
 					boolean isSilence = data.equals("false") ? false : true;
 					Guild.guild.get(i).setIsSilence(isSilence);
 
-					if (guildArr[11] != null)
-						for (int j = 0; j < Shop.itemList.size(); j++) {
-							if (guildArr[11].equals(Shop.itemList.get(i).name)) {
-								Item item = Shop.itemList.get(i);
-								Guild.guild.get(i).setHelmet(item);
-							}
-						}
-					if (guildArr[12] != null)
-						for (int j = 0; j < Shop.itemList.size(); j++) {
-							if (guildArr[11].equals(Shop.itemList.get(i).name)) {
-								Item item = Shop.itemList.get(i);
-								Guild.guild.get(i).setArmor(item);
-							}
-						}
-					if (guildArr[13] != null)
-						for (int j = 0; j < Shop.itemList.size(); j++) {
-							if (guildArr[11].equals(Shop.itemList.get(i).name)) {
-								Item item = Shop.itemList.get(i);
-								Guild.guild.get(i).setRing(item);
-							}
-						}
+					if (!guildArr[11].equals("null")) {
+						String playerItem[] = guildArr[11].split(",");
+						Item item = new Item();
+						int itemKind = Integer.parseInt(playerItem[0]);
+						String itemName = playerItem[1];
+						int itemPower = Integer.parseInt(playerItem[2]);
+						int itemPrice = Integer.parseInt(playerItem[3]);
+
+						item.kind = itemKind;
+						item.name = itemName;
+						item.power = itemPower;
+						item.price = itemPrice;
+						Guild.guild.get(i).setHelmet(item);
+					}
+
+					if (!guildArr[12].equals("null")) {
+						String playerItem[] = guildArr[12].split(",");
+						Item item = new Item();
+						int itemKind = Integer.parseInt(playerItem[0]);
+						String itemName = playerItem[1];
+						int itemPower = Integer.parseInt(playerItem[2]);
+						int itemPrice = Integer.parseInt(playerItem[3]);
+
+						item.kind = itemKind;
+						item.name = itemName;
+						item.power = itemPower;
+						item.price = itemPrice;
+						Guild.guild.get(i).setArmor(item);
+					}
+
+					if (!guildArr[13].equals("null")) {
+						String playerItem[] = guildArr[13].split(",");
+						Item item = new Item();
+						int itemKind = Integer.parseInt(playerItem[0]);
+						String itemName = playerItem[1];
+						int itemPower = Integer.parseInt(playerItem[2]);
+						int itemPrice = Integer.parseInt(playerItem[3]);
+
+						item.kind = itemKind;
+						item.name = itemName;
+						item.power = itemPower;
+						item.price = itemPrice;
+						Guild.guild.get(i).setRing(item);
+					}
 				}
 
 				Inventory.items.clear();
