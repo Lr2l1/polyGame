@@ -19,7 +19,6 @@ public class StageBattle extends Stage {
 	SetMonster setMonseter = new SetMonster();
 	Guild guild = new Guild();
 	Map<Integer, Monster> monsters = new HashMap<>();
-	Map<Integer, Human> players = new HashMap<>();
 
 	@Override
 	public boolean update() {
@@ -38,7 +37,7 @@ public class StageBattle extends Stage {
 
 	@Override
 	public void init() {
-		players = guild.setPlayer();
+
 		monsters = setMonseter.drawMonster();
 	}
 
@@ -71,28 +70,29 @@ public class StageBattle extends Stage {
 	private void playerInfo() {
 		System.out.println("=====[BATTLE]====");
 		System.out.println("=====[PLAYER]====");
-		for (int i = 0; i < players.size(); i++)
-			System.out.println(players.get(i));
+		for (int i = 0; i < Guild.players.size(); i++)
+			System.out.println(Guild.players.get(i));
 		System.out.println("=====[MONSTER]====");
 		for (int i = 0; i < SIZE; i++)
 			System.out.println(monsters.get(i));
 	}
 
 	private void battle() {
-		for (int i = 0; i < players.size(); i++) {
+		for (int i = 0; i < Guild.players.size(); i++) {
 			int monDead = checkMonster();
-			if (monDead == monsters.size()) {
+			int playerDead = checkPlayer();
+			if (monDead == monsters.size() || playerDead == 1) {
 				isWin = true;
 				isExit = true;
 				return;
 			}
 
-			if (!players.get(i).isStun()) {
+			if (!Guild.players.get(i).isStun()) {
 				printBattleMenu();
-				runBattle(option(), players.get(i));
-			} else if (players.get(i).isStun()) {
+				runBattle(option(), Guild.players.get(i));
+			} else if (Guild.players.get(i).isStun()) {
 				System.err.println("스턴상태에서는 행동이 불가능합니다.");
-				players.get(i).setIsStun();
+				Guild.players.get(i).setIsStun();
 			}
 		}
 	}
@@ -116,25 +116,25 @@ public class StageBattle extends Stage {
 	}
 
 	private void skill(Human human) {
-		if (human.equals(players.get(0))) {
+		if (human.equals(Guild.players.get(0))) {
 			int dice = ran.nextInt(SIZE);
 			human.skill(monsters.get(dice));
-		} else if (human.equals(players.get(1))) {
+		} else if (human.equals(Guild.players.get(1))) {
 			for (int i = 0; i < SIZE; i++) {
 				if (!monsters.get(i).isDead())
 					human.skill(monsters.get(i));
 			}
-		} else if (human.equals(players.get(2))) {
+		} else if (human.equals(Guild.players.get(2))) {
 			for (int i = 0; i < 3; i++)
-				human.skill(players.get(i));
+				human.skill(Guild.players.get(i));
 		}
 	}
 
 	private void attackMonster() {
 		for (int i = 0; i < SIZE; i++) {
-			int dice = ran.nextInt(players.size());
+			int dice = ran.nextInt(Guild.players.size());
 			if (!monsters.get(i).isDead())
-				monsters.get(i).attack(players.get(dice));
+				monsters.get(i).attack(Guild.players.get(dice));
 		}
 	}
 
@@ -153,8 +153,8 @@ public class StageBattle extends Stage {
 
 	private int checkPlayer() {
 		int count = 0;
-		for (int i = 0; i < players.size(); i++) {
-			if (players.get(i).isDead())
+		for (int i = 0; i < Guild.players.size(); i++) {
+			if (Guild.players.get(i).isDead())
 				count++;
 		}
 		return count;
