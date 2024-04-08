@@ -90,11 +90,11 @@ public class Guild {
 		if (sel == 1) {
 			Human.money -= 5000;
 			System.out.println("주사위 굴리기~");
-			int dice = ran.nextInt(10);
+			int dice = ran.nextInt(10)+1;
 
 			System.out.printf("주사위 숫자가 %d가 나왔어~", dice);
 
-			if (dice < 4) {
+			if (dice <= 4) {
 				try {
 					Class<?> clazz = Class.forName("polyGame." + human[0]);
 					Object obj = clazz.getDeclaredConstructor().newInstance();
@@ -103,7 +103,7 @@ public class Guild {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else if (dice >= 4 && dice < 8) {
+			} else if (dice > 4 && dice <= 8) {
 				try {
 					Class<?> clazz = Class.forName("polyGame." + human[1]);
 					Object obj = clazz.getDeclaredConstructor().newInstance();
@@ -112,7 +112,7 @@ public class Guild {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else if (dice == 8) {
+			} else if (dice == 9) {
 				try {
 					Class<?> clazz = Class.forName("polyGame." + human[2]);
 					Object obj = clazz.getDeclaredConstructor().newInstance();
@@ -121,7 +121,7 @@ public class Guild {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else if (dice == 9) {
+			} else if (dice == 10) {
 				try {
 					Class<?> clazz = Class.forName("polyGame." + human[3]);
 					Object obj = clazz.getDeclaredConstructor().newInstance();
