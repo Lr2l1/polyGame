@@ -66,7 +66,7 @@ public class Guild {
 
 		printGuild();
 		int idx = Game.inputNumber("길드원") - 1;
-		if (index < 0 || index >= guild.size()) {
+		if (idx < 0 || idx >= guild.size()) {
 			System.err.println("잘못된 번호입니다.");
 			return;
 		}
