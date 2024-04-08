@@ -84,7 +84,8 @@ public class StageBattle extends Stage {
 				isExit = true;
 				return;
 			}
-
+			if (Guild.players.get(i).isSilence())
+				System.err.println("침묵상태로 인한 스킬사용 불가능");
 			if (!Guild.players.get(i).isStun()) {
 				printBattleMenu();
 				runBattle(option(), Guild.players.get(i));
@@ -96,7 +97,6 @@ public class StageBattle extends Stage {
 	}
 
 	private void runBattle(int select, Human human) {
-
 		if (select == ATTACK)
 			attack(human);
 		else if (select == SKILL && !human.isSilence())
