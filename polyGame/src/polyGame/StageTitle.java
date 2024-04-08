@@ -4,9 +4,11 @@ public class StageTitle extends Stage {
 
 	@Override
 	public boolean update() {
-		System.out.println("==== TEXT RPG ====");
-		System.out.println("화면에 아무숫자나 입력하세요");
+		System.out.println("├┬┴┬┴┬┴┤TETX  RPG├┬┴┬┴┬┴┬┤");
+		System.out.println("├   화면에 숫자를 입력하세요  ┤");
+		System.out.println("├┬┴┬┴┬┴┬┴┬┴┬┴┬┴┬┴┬┴┬┴┬┴┬┴┤");
 		Game.inputNumber("");
+		
 		Game.nextStage = "LOBBY";
 		return false;
 	}
@@ -15,5 +17,4 @@ public class StageTitle extends Stage {
 	public void init() {
 
 	}
-
 }

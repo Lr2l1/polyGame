@@ -22,7 +22,7 @@ public class Inventory {
 	}
 
 	public void printItem() {
-		System.out.println("========== 인벤토리 =========");
+		System.out.println("═══════════[인벤토리]════════════");
 		for (int i = 0; i < items.size(); i++) {
 			System.out.printf("[ %d번] ", i + 1);
 			System.out.printf("[이름 : %s]", items.get(i).name);

@@ -71,7 +71,7 @@ public class Shop {
 	}
 
 	public void printMenu() {
-		System.out.println("================");
+		System.out.println("═══════════[상점]════════════");
 		System.out.println("[1]투구 [2]갑옷 [3]반지");
 		int sel = Game.inputNumber("메뉴");
 

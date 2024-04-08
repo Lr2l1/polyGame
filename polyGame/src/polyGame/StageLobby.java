@@ -3,7 +3,7 @@ package polyGame;
 public class StageLobby extends Stage {
 	@Override
 	public boolean update() {
-		System.out.println("=====[LOBBY]=====");
+		System.out.println("═══════════[LOBBY]════════════");
 		System.out.println("[1. 전투] [2. 설정] [0. 종료]");
 		while (true) {
 			int sel = Game.inputNumber("메뉴");

@@ -40,7 +40,7 @@ public class Guild {
 	}
 
 	public void printMenu() {
-		System.out.println("=====================");
+		System.out.println("═══════════[길드관리]════════════");
 		System.out.println("[1. 플레이어목록] [2. 대기중인 플레이어] [3. 플레이어 교체]");
 		System.out.println("[4. 길드원 뽑기] [0. 뒤로가기]");
 		int sel = Game.inputNumber("메뉴");
@@ -143,12 +143,11 @@ public class Guild {
 			System.out.print("[" + (i + 1) + "번]");
 			System.out.print(" [이름 : " + players.get(i).getName() + "]");
 			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
-			System.out.print(" [체력 : " + players.get(i).getHp());
-			System.out.println(" / " + players.get(i).MAX_HP + "]");
+			System.out.println("[공격력 : " + players.get(i).getPower() + "]");
+			System.out.print("\t[체력 : " + players.get(i).getHp());
+			System.out.print(" / " + players.get(i).MAX_HP + "]");
 			System.out.print(" [마나 : " + players.get(i).getMp());
 			System.out.println(" / " + players.get(i).MAX_MP + "]");
-			System.out.print("[공격력 : " + players.get(i).getPower() + "]");
-			System.out.println();
 		}
 	}
 
@@ -157,12 +156,11 @@ public class Guild {
 			System.out.print("[" + (i + 1) + "번]");
 			System.out.print(" [이름 : " + guild.get(i).getName() + "]");
 			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
-			System.out.print(" [체력 : " + guild.get(i).getHp());
-			System.out.println(" / " + guild.get(i).MAX_HP + "]");
+			System.out.println("[공격력 : " + guild.get(i).getPower() + "]");
+			System.out.print("[체력 : " + guild.get(i).getHp());
+			System.out.print(" / " + guild.get(i).MAX_HP + "]");
 			System.out.print(" [마나 : " + guild.get(i).getMp());
 			System.out.println(" / " + guild.get(i).MAX_MP + "]");
-			System.out.print("[공격력 : " + guild.get(i).getPower() + "]");
-			System.out.println();
 		}
 	}
 

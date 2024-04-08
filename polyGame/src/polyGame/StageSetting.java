@@ -9,9 +9,9 @@ public class StageSetting extends Stage {
 	public boolean update() {
 		boolean isRun = true;
 		while (isRun) {
-			System.out.println("=============== [메인메뉴] ================");
-			System.out.println("[1.길드관리]\t\t[2.상점]\t\t[3.인벤토리]");
-			System.out.println("[4.저장]\t\t[5.로드]\t\t[0.뒤로가기]");
+			System.out.println("═══════════[메뉴]════════════");
+			System.out.println("[1.길드관리] [2.상점] [3.인벤토리]");
+			System.out.println("[4.저장] [5.로드] [0.뒤로가기]");
 			int sel = Game.inputNumber("메뉴");
 			if (sel == 1) {
 				guild.printMenu();
