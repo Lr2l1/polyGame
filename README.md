@@ -147,4 +147,3 @@
 
 
 ![demo](zombie/image/zombieGameDemo.gif)
-# polyGame
