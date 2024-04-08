@@ -98,11 +98,6 @@ public class Shop {
 						Inventory.addItem(itemList.get(i));
 						Human.money -= itemList.get(i).price;
 						System.out.printf("[%s] 을 구입했습니다\n.", itemList.get(i).name);
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
 						break;
 					}
 				}
@@ -123,5 +118,4 @@ public class Shop {
 			count++;
 		}
 	}
-
 }
