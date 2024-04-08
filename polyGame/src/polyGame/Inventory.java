@@ -55,9 +55,10 @@ public class Inventory {
 			Guild.players.get(num).setRing(items.get(itemNum));
 			items.remove(itemNum);
 			System.out.printf("%s 착용완료\n", Guild.players.get(num).getRing().name);
-		} else
+		} else {
+			System.out.println("이미 아이템을 착용하고 있는 부위야!");
 			return;
-
+		}
 	}
 
 	public void removeItem() {
@@ -74,9 +75,10 @@ public class Inventory {
 		} else if (itemNum == Item.RING && Guild.players.get(num).getRing() != null) {
 			items.add(Guild.players.get(num).getRing());
 			Guild.players.get(num).removeHelmet();
-		} else
+		} else {
+			System.out.println("아이템을 착용하고 있지 않아!");
 			return;
-
+		}
 	}
 
 	public void sellItem() {
@@ -84,7 +86,7 @@ public class Inventory {
 			System.out.println("인벤토리가 비어있어");
 			return;
 		}
-		
+
 		printItem();
 		int num = Game.inputNumber("상품번호") - 1;
 		if (num < 0 || num >= items.size())
