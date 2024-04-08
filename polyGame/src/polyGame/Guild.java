@@ -79,51 +79,63 @@ public class Guild {
 	}
 
 	public void guildDraw() {
-		System.out.println("주사위 굴리기~");
-		int dice = ran.nextInt(10);
-
-		System.out.printf("주사위 숫자가 %d가 나왔어~", dice);
-
-		if (dice < 4) {
-			try {
-				Class<?> clazz = Class.forName("polyGame." + human[0]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
-				Human temp = (Human) obj;
-				guild.put(count, temp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (dice >= 4 && dice < 8) {
-			try {
-				Class<?> clazz = Class.forName("polyGame." + human[1]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
-				Human temp = (Human) obj;
-				guild.put(count, temp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (dice == 8) {
-			try {
-				Class<?> clazz = Class.forName("polyGame." + human[2]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
-				Human temp = (Human) obj;
-				guild.put(count, temp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (dice == 9) {
-			try {
-				Class<?> clazz = Class.forName("polyGame." + human[3]);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
-				Human temp = (Human) obj;
-				guild.put(count, temp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if (Human.money < 5000) {
+			System.err.println("보유골드가 부족해서 길드원을 뽑을 수 없어!");
+			return;
 		}
 
-		System.out.printf("뽑힌 길드원은 %s~\n", guild.get(count).getName());
-		count++;
+		System.out.println("5000골드를 사용하여 길드원을 뽑을꺼야?");
+		int sel = Game.inputNumber("예(1) 아니요(2)");
+
+		if (sel == 1) {
+			Human.money -= 5000;
+			System.out.println("주사위 굴리기~");
+			int dice = ran.nextInt(10);
+
+			System.out.printf("주사위 숫자가 %d가 나왔어~", dice);
+
+			if (dice < 4) {
+				try {
+					Class<?> clazz = Class.forName("polyGame." + human[0]);
+					Object obj = clazz.getDeclaredConstructor().newInstance();
+					Human temp = (Human) obj;
+					guild.put(count, temp);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (dice >= 4 && dice < 8) {
+				try {
+					Class<?> clazz = Class.forName("polyGame." + human[1]);
+					Object obj = clazz.getDeclaredConstructor().newInstance();
+					Human temp = (Human) obj;
+					guild.put(count, temp);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (dice == 8) {
+				try {
+					Class<?> clazz = Class.forName("polyGame." + human[2]);
+					Object obj = clazz.getDeclaredConstructor().newInstance();
+					Human temp = (Human) obj;
+					guild.put(count, temp);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (dice == 9) {
+				try {
+					Class<?> clazz = Class.forName("polyGame." + human[3]);
+					Object obj = clazz.getDeclaredConstructor().newInstance();
+					Human temp = (Human) obj;
+					guild.put(count, temp);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			System.out.printf("뽑힌 길드원은 %s~\n", guild.get(count).getName());
+			count++;
+		} else if (sel == 2)
+			return;
 	}
 
 	public void printPlayers() {
