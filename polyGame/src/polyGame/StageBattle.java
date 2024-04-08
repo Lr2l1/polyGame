@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class StageBattle extends Stage {
-	private final int SIZE = 4;
-
 	private final int BATTLE = 1;
 	private final int FINISH = 2;
 
@@ -73,7 +71,7 @@ public class StageBattle extends Stage {
 		for (int i = 0; i < Guild.players.size(); i++)
 			System.out.println(Guild.players.get(i));
 		System.out.println("=====[MONSTER]====");
-		for (int i = 0; i < SIZE; i++)
+		for (int i = 0; i < monsters.size(); i++)
 			System.out.println(monsters.get(i));
 	}
 
@@ -122,7 +120,7 @@ public class StageBattle extends Stage {
 	}
 
 	private void attackMonster() {
-		for (int i = 0; i < SIZE; i++) {
+		for (int i = 0; i < monsters.size(); i++) {
 			int dice = ran.nextInt(Guild.players.size());
 			if (!monsters.get(i).isDead())
 				monsters.get(i).attack(Guild.players.get(dice));
