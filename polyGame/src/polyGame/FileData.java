@@ -100,6 +100,12 @@ public class FileData {
 
 			fw.write(gameData);
 			fw.close();
+			System.out.println("게임 저장하는 중..");
+			System.out.println("Loading... ");
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+			}
 			System.out.println("데이터 저장 성공~");
 		} catch (Exception e) {
 			System.err.println("데이터 저장 실패");
@@ -292,7 +298,13 @@ public class FileData {
 				fr.close();
 				br.close();
 				System.out.println("게임 불러오는중..");
+				System.out.println("Loading... ");
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+				}
 				System.out.println("게임 로드 성공");
+				System.out.println();
 			} catch (Exception e) {
 				System.err.println("데이터 로드 실패");
 			}
