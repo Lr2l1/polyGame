@@ -28,6 +28,19 @@ public class HumanDruid extends Human {
 
 	@Override
 	void skill() {
+		
+		for (int i = 0; i < StageBattle.monsters.size(); i++) {
+			Monster monster = StageBattle.monsters.get(i);
+			setMp(getMp() - 40);
+			setPower(super.MAX_POWER*2);
+			System.out.printf("%s가 스킬을 사용하여 %d데미지\n", getName(), getPower());
+			monster.setHp(monster.getHp() - getPower());
+
+			if (monster.getHp() <= 0) {
+				monster.setHp(0);
+				monster.setIsDead(true);
+			}
+		}
 	}
 
 	@Override
