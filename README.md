@@ -141,7 +141,7 @@
 * Unit
 ![diagram](polyGame/image/polyGame.jpg)
 
-* Stage
+* Stage <br>
 ![diagram](polyGame/image/Stage.jpg)
 > Demo
 
