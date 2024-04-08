@@ -71,7 +71,13 @@ public class Shop {
 	}
 
 	public void printMenu() {
+		if (Human.money<=0) {
+			System.err.println("보유한 골드가 부족합니다!");
+			return;
+		}
+		
 		System.out.println("═══════════[상점]════════════");
+		System.out.printf("[ 보유골드 :  %d ]\n", Human.money);
 		System.out.println("[1]투구 [2]갑옷 [3]반지");
 		int sel = Game.inputNumber("메뉴");
 
