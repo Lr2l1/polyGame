@@ -110,9 +110,11 @@
 
 
 > Class Diagram
-
+* Unit
 ![diagram](polyGame/image/polyGame.jpg)
 
+* Stage
+![diagram]()
 > Demo
 
 
