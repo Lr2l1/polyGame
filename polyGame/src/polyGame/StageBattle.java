@@ -22,6 +22,7 @@ public class StageBattle extends Stage {
 
 	@Override
 	public boolean update() {
+		isWin = false;
 		isExit = false;
 		while (!isExit) {
 			printMenu();
@@ -30,7 +31,7 @@ public class StageBattle extends Stage {
 		}
 		if (isWin)
 			Game.nextStage = "WIN";
-		else
+		else if (!isWin)
 			Game.nextStage = "LOBBY";
 		return false;
 	}
