@@ -80,6 +80,11 @@ public class Inventory {
 	}
 
 	public void sellItem() {
+		if (items.size() < 1) {
+			System.out.println("인벤토리가 비어있어");
+			return;
+		}
+		
 		printItem();
 		int num = Game.inputNumber("상품번호") - 1;
 		if (num < 0 || num >= items.size())
