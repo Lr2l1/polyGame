@@ -66,7 +66,7 @@ public class StageBattle extends Stage {
 	}
 
 	private void playerInfo() {
-		System.out.println("=====[BATTLE]====");
+		System.out.println("═══════════[BATTLE]════════════");
 		System.out.println("=====[PLAYER]====");
 		for (int i = 0; i < Guild.players.size(); i++)
 			System.out.println(Guild.players.get(i));
@@ -148,5 +148,4 @@ public class StageBattle extends Stage {
 		}
 		return count;
 	}
-
 }
