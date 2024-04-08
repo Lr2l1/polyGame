@@ -32,24 +32,29 @@ public class Inventory {
 	}
 
 	public void wearItem() {
+		if (items.size()<1) {
+			System.out.println("인벤토리가 비어있어");
+			return;
+		}
+		
 		guild.printPlayers();
 		int num = Game.inputNumber("플레이어 번호") - 1;
 		guild.printWornItem(num);
 		printItem();
 
 		int itemNum = Game.inputNumber("아이템 번호") - 1;
-		if (items.get(itemNum).kind == Item.HELMET && guild.players.get(num).getHelmet() == null) {
-			guild.players.get(num).setHelmet(items.get(itemNum));
+		if (items.get(itemNum).kind == Item.HELMET && Guild.players.get(num).getHelmet() == null) {
+			Guild.players.get(num).setHelmet(items.get(itemNum));
 			items.remove(itemNum);
-			System.out.printf("%s 착용완료\n", guild.players.get(num).getHelmet().name);
-		} else if (items.get(itemNum).kind == Item.ARMOR && guild.players.get(num).getArmor() == null) {
-			guild.players.get(num).setArmor(items.get(itemNum));
+			System.out.printf("%s 착용완료\n", Guild.players.get(num).getHelmet().name);
+		} else if (items.get(itemNum).kind == Item.ARMOR && Guild.players.get(num).getArmor() == null) {
+			Guild.players.get(num).setArmor(items.get(itemNum));
 			items.remove(itemNum);
-			System.out.printf("%s 착용완료\n", guild.players.get(num).getArmor().name);
-		} else if (items.get(itemNum).kind == Item.RING && guild.players.get(num).getRing() == null) {
-			guild.players.get(num).setRing(items.get(itemNum));
+			System.out.printf("%s 착용완료\n", Guild.players.get(num).getArmor().name);
+		} else if (items.get(itemNum).kind == Item.RING && Guild.players.get(num).getRing() == null) {
+			Guild.players.get(num).setRing(items.get(itemNum));
 			items.remove(itemNum);
-			System.out.printf("%s 착용완료\n", guild.players.get(num).getRing().name);
+			System.out.printf("%s 착용완료\n", Guild.players.get(num).getRing().name);
 		} else
 			return;
 
@@ -60,15 +65,15 @@ public class Inventory {
 		int num = Game.inputNumber("플레이어 번호") - 1;
 		guild.printWornItem(num);
 		int itemNum = Game.inputNumber("착용 해제 할 아이템 [1. 헬멧] [2. 갑옷] [3. 반지]");
-		if (itemNum == Item.HELMET && guild.players.get(num).getHelmet() != null) {
-			items.add(guild.players.get(num).getHelmet());
-			guild.players.get(num).removeHelmet();
-		} else if (itemNum == Item.ARMOR && guild.players.get(num).getArmor() != null) {
-			items.add(guild.players.get(num).getArmor());
-			guild.players.get(num).removeHelmet();
-		} else if (itemNum == Item.RING && guild.players.get(num).getRing() != null) {
-			items.add(guild.players.get(num).getRing());
-			guild.players.get(num).removeHelmet();
+		if (itemNum == Item.HELMET && Guild.players.get(num).getHelmet() != null) {
+			items.add(Guild.players.get(num).getHelmet());
+			Guild.players.get(num).removeHelmet();
+		} else if (itemNum == Item.ARMOR && Guild.players.get(num).getArmor() != null) {
+			items.add(Guild.players.get(num).getArmor());
+			Guild.players.get(num).removeHelmet();
+		} else if (itemNum == Item.RING && Guild.players.get(num).getRing() != null) {
+			items.add(Guild.players.get(num).getRing());
+			Guild.players.get(num).removeHelmet();
 		} else
 			return;
 
