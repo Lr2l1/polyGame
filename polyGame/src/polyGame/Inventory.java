@@ -32,11 +32,11 @@ public class Inventory {
 	}
 
 	public void wearItem() {
-		if (items.size()<1) {
+		if (items.size() < 1) {
 			System.out.println("인벤토리가 비어있어");
 			return;
 		}
-		
+
 		guild.printPlayers();
 		int num = Game.inputNumber("플레이어 번호") - 1;
 		guild.printWornItem(num);
@@ -85,8 +85,11 @@ public class Inventory {
 		if (num < 0 || num >= items.size())
 			return;
 
+		System.out.printf("%s 아이템을 판매했어.\n", items.get(num).name);
+
 		Human.money += items.get(num).price / 2;
 		items.remove(num);
+		System.out.println("보유골드 : " + Human.money);
 
 	}
 
