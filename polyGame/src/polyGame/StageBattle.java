@@ -63,7 +63,6 @@ public class StageBattle extends Stage {
 	}
 
 	private void printBattleMenu() {
-
 		System.out.println("[1]어택");
 		System.out.println("[2]스킬");
 	}
@@ -99,11 +98,13 @@ public class StageBattle extends Stage {
 	}
 
 	private void runBattle(int select, Human human) {
+
 		if (select == ATTACK)
 			attack(human);
 		else if (select == SKILL && !human.isSilence())
 			skill(human);
-
+		if (human.isSilence())
+			human.setIsSilence(false);
 	}
 
 	private void attack(Human human) {
