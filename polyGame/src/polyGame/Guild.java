@@ -42,7 +42,7 @@ public class Guild {
 	public void printMenu() {
 		System.out.println("═══════════[길드관리]════════════");
 		System.out.println("[1. 플레이어목록] [2. 대기중인 플레이어] [3. 플레이어 교체]");
-		System.out.println("[4. 길드원 뽑기] [0. 뒤로가기]");
+		System.out.println("[4. 길드원 뽑기] [5. 길드원 부활] [0. 뒤로가기]");
 		int sel = Game.inputNumber("메뉴");
 		if (sel == 1)
 			printPlayers();
@@ -51,6 +51,8 @@ public class Guild {
 		else if (sel == 3)
 			changePlayer();
 		else if (sel == 4)
+			guildDraw();
+		else if (sel == 5)
 			guildDraw();
 		else if (sel == 0)
 			return;
@@ -142,6 +144,31 @@ public class Guild {
 			return;
 	}
 
+	public void saveGuild() {
+
+		Human human = null;
+		for (int i = 0; i < guild.size(); i++) {
+			if (guild.get(i).isDead())
+				human = guild.get(i);
+		}
+
+		if (human == null) {
+			System.out.println("부활 가능한 길드원이 존재하지 않아!");
+			return;
+		}
+
+		System.out.printf("5000골드를 사용해서 %s를 살릴거야?\n", human.getName());
+		int sel = Game.inputNumber("예(1) 아니요(2)");
+
+		if (sel == 1) {
+			human.setHp(human.MAX_HP);
+			Human.money -= 5000;
+		} else if (sel == 2) {
+			return;
+		}
+
+	}
+
 	public void printPlayers() {
 		for (int i = 0; i < players.size(); i++) {
 			System.out.print("[" + (i + 1) + "번]");
@@ -149,7 +176,9 @@ public class Guild {
 			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
 			System.out.println("[공격력 : " + players.get(i).getPower() + "]");
 			System.out.printf("\t[체력 : %d / %d ]", players.get(i).getHp(), players.get(i).MAX_HP);
-			System.out.printf(" [마나 : %d / %d ]\n" + players.get(i).getMp(), players.get(i).MAX_MP);
+			System.out.print(" [마력 : " + players.get(i).getMp());
+			System.out.println(" / " + players.get(i).MAX_MP + "]");
+
 		}
 	}
 
@@ -160,7 +189,9 @@ public class Guild {
 			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
 			System.out.println("[공격력 : " + guild.get(i).getPower() + "]");
 			System.out.printf("\t[체력 : %d / %d ]", guild.get(i).getHp(), guild.get(i).MAX_HP);
-			System.out.printf(" [마나 : %d / %d ]\n" + guild.get(i).getMp(), guild.get(i).MAX_MP);
+			System.out.print(" [마력 : " + guild.get(i).getMp());
+			System.out.print(" / " + guild.get(i).MAX_MP + "]");
+			System.out.printf("%s\n", guild.get(i).isDead() ? "부활필요" : "");
 		}
 	}
 
