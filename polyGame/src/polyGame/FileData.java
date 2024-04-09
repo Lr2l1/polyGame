@@ -292,9 +292,8 @@ public class FileData {
 					item.power = itemPower;
 					item.price = itemPrice;
 					Inventory.items.add(item);
-
 				}
-
+				Guild.count = Guild.guild.size();
 				fr.close();
 				br.close();
 				System.out.println("게임 불러오는중..");

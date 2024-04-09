@@ -12,13 +12,12 @@ public class Guild {
 	String player[] = { "HumanWarrior", "HumanWizard", "HumanHealer" };
 	String human[] = { "HumanArcher", "HumanThief", "HumanMonk", "HumanDruid" };
 
-	private int count;
+	static public int count;
 
 	public Guild() {
 		players = new HashMap<>();
 		guild = new HashMap<>();
-		this.count = guild.size();
-
+		count = guild.size();
 		players = setPlayer();
 	}
 
@@ -94,6 +93,7 @@ public class Guild {
 		int sel = Game.inputNumber("예(1) 아니요(2)");
 
 		if (sel == 1) {
+			System.out.println(count);
 			Human.money -= 5000;
 			System.out.println("주사위 굴리기~");
 			int dice = ran.nextInt(10) + 1;
@@ -145,7 +145,6 @@ public class Guild {
 	}
 
 	public void saveGuild() {
-
 		Human human = null;
 		for (int i = 0; i < guild.size(); i++) {
 			if (guild.get(i).isDead())
@@ -176,21 +175,19 @@ public class Guild {
 			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
 			System.out.println("[공격력 : " + players.get(i).getPower() + "]");
 			System.out.printf("\t[체력 : %d / %d ]", players.get(i).getHp(), players.get(i).MAX_HP);
-			System.out.print(" [마력 : " + players.get(i).getMp());
-			System.out.println(" / " + players.get(i).MAX_MP + "]");
-
+			System.out.printf("\t[마나 : %d / %d ]", players.get(i).getMp(), players.get(i).getMaxMp());
 		}
 	}
 
 	public void printGuild() {
+		System.out.println(guild.size());
 		for (int i = 0; i < guild.size(); i++) {
 			System.out.print("[" + (i + 1) + "번]");
 			System.out.print(" [이름 : " + guild.get(i).getName() + "]");
-			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
+			System.out.print(" [레벨 : " + guild.get(i).getLevel() + "]");
 			System.out.println("[공격력 : " + guild.get(i).getPower() + "]");
 			System.out.printf("\t[체력 : %d / %d ]", guild.get(i).getHp(), guild.get(i).MAX_HP);
-			System.out.print(" [마력 : " + guild.get(i).getMp());
-			System.out.print(" / " + guild.get(i).MAX_MP + "]");
+			System.out.printf("\t[마나 : %d / %d ]", guild.get(i).getMp(), guild.get(i).getMaxMp());
 			System.out.printf("%s\n", guild.get(i).isDead() ? "부활필요" : "");
 		}
 	}
@@ -213,5 +210,4 @@ public class Guild {
 			System.out.printf("[반지 : %s\n", players.get(num).getRing().name);
 		}
 	}
-
 }
