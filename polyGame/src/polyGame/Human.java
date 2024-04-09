@@ -1,7 +1,7 @@
 package polyGame;
 
 public abstract class Human extends Unit implements Stunable, Silenceable, Recoverable {
-	public int MAX_MP;
+	private int maxMp;
 	private int mp;
 	private int level;
 	private boolean isStun;
@@ -16,7 +16,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	Human(String name, int level, int hp, int mp, int power) {
 		super(name, hp, power);
 		this.mp = mp;
-		this.MAX_MP = mp;
+		this.maxMp = mp;
 		this.level = level;
 		this.isStun = false;
 		this.isSilence = false;
@@ -33,7 +33,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 		System.out.printf("%s LEVEL UP : lv%d \n", getName(), this.level + 1);
 		this.level = this.level + 1;
 		MAX_HP = MAX_HP + 50;
-		this.MAX_MP = MAX_MP + 50;
+		this.maxMp = maxMp + 50;
 		MAX_POWER = MAX_POWER + 10;
 		setHp(MAX_HP);
 		setMp(MAX_HP);
@@ -49,6 +49,14 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	public void setMp(int mp) {
 		this.mp = mp;
+	}
+
+	public int getMaxMp() {
+		return this.maxMp;
+	}
+
+	public void setMaxMp(int maxMp) {
+		this.maxMp = maxMp;
 	}
 
 	public boolean isStun() {
@@ -73,7 +81,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	public void setHelmet(Item helmet) {
 		this.helmet = helmet;
-		setPower(getPower() + helmet.power);
+		MAX_POWER += helmet.power;
 	}
 
 	public void removeHelmet() {
@@ -87,6 +95,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	public void setArmor(Item armor) {
 		this.armor = armor;
+		MAX_POWER += armor.power;
 	}
 
 	public Item getRing() {
@@ -95,6 +104,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 
 	public void setRing(Item ring) {
 		this.ring = ring;
+		MAX_POWER += ring.power;
 	}
 
 	abstract void skill();
@@ -102,7 +112,7 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 	@Override
 	public String toString() {
 		String info = String.format("[lv%d %s] HP %d/%d MP %d/%d\n상태이상 : ", level, getName(), getHp(), MAX_HP, getMp(),
-				MAX_MP);
+				maxMp);
 		info += String.format("%s", isStun() ? " 스턴상태 /" : "X /");
 		info += String.format("%s", isSilence() ? " 침묵상태" : " X");
 		return info;
