@@ -14,6 +14,7 @@ public class StageBattle extends Stage {
 	private Random ran = new Random();
 	private boolean isExit;
 	private boolean isWin;
+	private boolean isLose;
 	SetMonster setMonseter = new SetMonster();
 	Guild guild = new Guild();
 	static Map<Integer, Monster> monsters = new HashMap<>();
@@ -22,6 +23,7 @@ public class StageBattle extends Stage {
 	public boolean update() {
 		isWin = false;
 		isExit = false;
+		isLose = false;
 		while (!isExit) {
 			printMenu();
 			int sel = Game.inputNumber("메뉴");
@@ -29,6 +31,8 @@ public class StageBattle extends Stage {
 		}
 		if (isWin)
 			Game.nextStage = "WIN";
+		else if (isLose)
+			Game.nextStage = "LOSE";
 		else if (!isWin)
 			Game.nextStage = "LOBBY";
 		return false;
@@ -36,7 +40,6 @@ public class StageBattle extends Stage {
 
 	@Override
 	public void init() {
-
 		monsters = setMonseter.drawMonster();
 	}
 
@@ -79,8 +82,13 @@ public class StageBattle extends Stage {
 		for (int i = 0; i < Guild.players.size(); i++) {
 			int monDead = checkMonster();
 			int playerDead = checkPlayer();
-			if (monDead == monsters.size() || playerDead == 1) {
+			if (monDead == monsters.size()) {
 				isWin = true;
+				isExit = true;
+				return;
+			}
+			if (playerDead == 1) {
+				isLose = true;
 				isExit = true;
 				return;
 			}
