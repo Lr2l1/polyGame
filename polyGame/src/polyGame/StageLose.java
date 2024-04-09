@@ -28,6 +28,7 @@ public class StageLose extends Stage {
 
 		if (sel == 1) {
 			human.setHp(human.MAX_HP);
+			Human.money -= 5000;
 		} else if (sel == 2) {
 			boolean isRun = true;
 			while (isRun) {
