@@ -1,13 +1,11 @@
 package polyGame;
 
+import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Game {
-
-	private static Scanner scan = new Scanner(System.in);
-
+	static Scanner scan = new Scanner(System.in);
 	static Game instance = new Game();
 	static String nextStage = "";
 
@@ -25,6 +23,7 @@ public class Game {
 		stageList.put("LOBBY", new StageLobby());
 		stageList.put("SETTING", new StageSetting());
 		stageList.put("WIN", new StageWin());
+		stageList.put("LOSE", new StageLose());
 		nextStage = "TITLE";
 	}
 
