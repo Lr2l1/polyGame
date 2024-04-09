@@ -25,11 +25,6 @@ public class HumanHealer extends Human {
 			monster.setIsDead(true);
 		}
 	}
-
-	@Override
-	void skill(Unit unit) {
-		
-	}
 	
 	@Override
 	void skill() {
@@ -62,6 +57,4 @@ public class HumanHealer extends Human {
 	public void recover() {
 		setHp(getHp() + 50);
 	}
-
-	
 }

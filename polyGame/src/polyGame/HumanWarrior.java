@@ -27,8 +27,10 @@ public class HumanWarrior extends Human {
 	}
 
 	@Override
-	void skill(Unit enenmy) {
-		Monster monster = (Monster) enenmy;
+	void skill() {
+		int ranNum = ran.nextInt(StageBattle.monsters.size());
+		Monster monster = StageBattle.monsters.get(ranNum);
+		
 		setMp(getMp() - 40);
 		setPower(super.MAX_POWER * 2);
 
@@ -44,10 +46,6 @@ public class HumanWarrior extends Human {
 			monster.setHp(0);
 			monster.setIsDead(true);
 		}
-	}
-	
-	@Override
-	void skill() {
 	}
 
 	@Override
@@ -66,5 +64,4 @@ public class HumanWarrior extends Human {
 	public void recover() {
 		setHp(getHp() + 50);
 	}
-
 }

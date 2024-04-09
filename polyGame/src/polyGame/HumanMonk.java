@@ -30,8 +30,10 @@ public class HumanMonk extends Human {
 	}
 
 	@Override
-	void skill(Unit enenmy) {
-		Monster monster = (Monster) enenmy;
+	void skill() {
+		int ranNum = ran.nextInt(StageBattle.monsters.size());
+		Monster monster = StageBattle.monsters.get(ranNum);
+
 		setMp(getMp() - 40);
 		int ranPower = ran.nextInt(super.MAX_POWER) + super.MAX_POWER * 2;
 		setPower(ranPower);
@@ -39,14 +41,10 @@ public class HumanMonk extends Human {
 		monster.setHp(monster.getHp() - getPower());
 		setHp(getHp() + getPower() / 2);
 
-		if (enenmy.getHp() <= 0) {
-			enenmy.setHp(0);
-			enenmy.setIsDead(true);
+		if (monster.getHp() <= 0) {
+			monster.setHp(0);
+			monster.setIsDead(true);
 		}
-	}
-	
-	@Override
-	void skill() {
 	}
 
 	@Override
@@ -64,6 +62,5 @@ public class HumanMonk extends Human {
 	@Override
 	public void recover() {
 		setHp(getHp() + 50);
-
 	}
 }

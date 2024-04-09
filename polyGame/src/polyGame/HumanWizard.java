@@ -28,11 +28,6 @@ public class HumanWizard extends Human {
 	}
 
 	@Override
-	void skill(Unit enenmy) {
-
-	}
-
-	@Override
 	void skill() {
 		for (int i = 0; i < StageBattle.monsters.size(); i++) {
 			Monster monster = StageBattle.monsters.get(i);
@@ -46,7 +41,6 @@ public class HumanWizard extends Human {
 				monster.setIsDead(true);
 			}
 		}
-
 	}
 
 	@Override

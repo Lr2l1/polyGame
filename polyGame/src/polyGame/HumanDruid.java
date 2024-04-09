@@ -59,11 +59,4 @@ public class HumanDruid extends Human {
 	public void recover() {
 		setHp(getHp() + 50);
 	}
-
-	@Override
-	void skill(Unit unit) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

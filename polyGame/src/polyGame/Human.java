@@ -97,8 +97,6 @@ public abstract class Human extends Unit implements Stunable, Silenceable, Recov
 		this.ring = ring;
 	}
 
-	abstract void skill(Unit unit);
-
 	abstract void skill();
 
 	@Override

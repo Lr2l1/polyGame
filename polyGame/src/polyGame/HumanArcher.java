@@ -27,22 +27,20 @@ public class HumanArcher extends Human {
 	}
 
 	@Override
-	void skill(Unit enenmy) {
-		Monster monster = (Monster) enenmy;
+	void skill() {
+		int ranNum = ran.nextInt(StageBattle.monsters.size());
+		Monster monster = StageBattle.monsters.get(ranNum);
+		
 		setMp(getMp() - 40);
-		int ranPower = ran.nextInt(super.MAX_POWER*2);
+		int ranPower = ran.nextInt(super.MAX_POWER * 2);
 		setPower(ranPower);
 		System.out.printf("%s가 스킬을 사용하여 %d데미지\n", getName(), getPower());
 		monster.setHp(monster.getHp() - getPower());
 
-		if (enenmy.getHp() <= 0) {
-			enenmy.setHp(0);
-			enenmy.setIsDead(true);
+		if (monster.getHp() <= 0) {
+			monster.setHp(0);
+			monster.setIsDead(true);
 		}
-	}
-	
-	@Override
-	void skill() {
 	}
 
 	@Override
@@ -61,6 +59,4 @@ public class HumanArcher extends Human {
 	public void recover() {
 		setHp(getHp() + 50);
 	}
-
-	
 }
