@@ -180,7 +180,6 @@ public class Guild {
 	}
 
 	public void printGuild() {
-		System.out.println(guild.size());
 		for (int i = 0; i < guild.size(); i++) {
 			System.out.print("[" + (i + 1) + "번]");
 			System.out.print(" [이름 : " + guild.get(i).getName() + "]");
