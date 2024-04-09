@@ -24,7 +24,7 @@ public class FileData {
 				gameData += Guild.players.get(i).isDead() + "/";
 				gameData += Guild.players.get(i).getLevel() + "/";
 				gameData += Guild.players.get(i).getMp() + "/";
-				gameData += Guild.players.get(i).MAX_MP + "/";
+				gameData += Guild.players.get(i).getMaxMp() + "/";
 				gameData += Guild.players.get(i).isStun() + "/";
 				gameData += Guild.players.get(i).isSilence() + "/";
 
@@ -62,7 +62,7 @@ public class FileData {
 				gameData += Guild.guild.get(i).isDead() + "/";
 				gameData += Guild.guild.get(i).getLevel() + "/";
 				gameData += Guild.guild.get(i).getMp() + "/";
-				gameData += Guild.guild.get(i).MAX_MP + "/";
+				gameData += Guild.guild.get(i).getMaxMp() + "/";
 				gameData += Guild.guild.get(i).isStun() + "/";
 				gameData += Guild.guild.get(i).isSilence() + "/";
 				if (Guild.guild.get(i).getHelmet() != null) {
@@ -145,7 +145,7 @@ public class FileData {
 					Guild.players.get(i).setIsDead(isDead);
 					Guild.players.get(i).setLevel(Integer.parseInt(playerArr[6]));
 					Guild.players.get(i).setMp(Integer.parseInt(playerArr[7]));
-					Guild.players.get(i).MAX_MP = Integer.parseInt(playerArr[8]);
+					Guild.players.get(i).setMaxMp(Integer.parseInt(playerArr[8]));
 					data = playerArr[9];
 					boolean isStun = data.equals("false") ? false : true;
 					Guild.players.get(i).setIsStun(isStun);
@@ -222,7 +222,7 @@ public class FileData {
 					Guild.guild.get(i).setIsDead(isDead);
 					Guild.guild.get(i).setLevel(Integer.parseInt(guildArr[6]));
 					Guild.guild.get(i).setMp(Integer.parseInt(guildArr[7]));
-					Guild.guild.get(i).MAX_MP = Integer.parseInt(guildArr[8]);
+					Guild.guild.get(i).setMaxMp(Integer.parseInt(guildArr[8]));
 					data = guildArr[9];
 					boolean isStun = data.equals("false") ? false : true;
 					Guild.guild.get(i).setIsStun(isStun);
