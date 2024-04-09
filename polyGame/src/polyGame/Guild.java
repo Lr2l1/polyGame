@@ -57,6 +57,11 @@ public class Guild {
 	}
 
 	public void changePlayer() {
+		if (guild.size() <= 0) {
+			System.out.println("교체할 길드원이 존재하지 않아!");
+			return;
+		}
+
 		printPlayers();
 		int index = Game.inputNumber("플레이어선택") - 1;
 		if (index < 0 || index >= players.size()) {
@@ -75,7 +80,6 @@ public class Guild {
 		players.put(index, guild.get(idx));
 		guild.put(idx, temp);
 		System.out.println("플레이어가 교체되었어.");
-
 	}
 
 	public void guildDraw() {
@@ -90,7 +94,7 @@ public class Guild {
 		if (sel == 1) {
 			Human.money -= 5000;
 			System.out.println("주사위 굴리기~");
-			int dice = ran.nextInt(10)+1;
+			int dice = ran.nextInt(10) + 1;
 
 			System.out.printf("주사위 숫자가 %d가 나왔어~", dice);
 
@@ -144,10 +148,8 @@ public class Guild {
 			System.out.print(" [이름 : " + players.get(i).getName() + "]");
 			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
 			System.out.println("[공격력 : " + players.get(i).getPower() + "]");
-			System.out.print("\t[체력 : " + players.get(i).getHp());
-			System.out.print(" / " + players.get(i).MAX_HP + "]");
-			System.out.print(" [마나 : " + players.get(i).getMp());
-			System.out.println(" / " + players.get(i).MAX_MP + "]");
+			System.out.printf("\t[체력 : %d / %d ]", players.get(i).getHp(), players.get(i).MAX_HP);
+			System.out.printf(" [마나 : %d / %d ]\n" + players.get(i).getMp(), players.get(i).MAX_MP);
 		}
 	}
 
@@ -157,10 +159,8 @@ public class Guild {
 			System.out.print(" [이름 : " + guild.get(i).getName() + "]");
 			System.out.print(" [레벨 : " + players.get(i).getLevel() + "]");
 			System.out.println("[공격력 : " + guild.get(i).getPower() + "]");
-			System.out.print("[체력 : " + guild.get(i).getHp());
-			System.out.print(" / " + guild.get(i).MAX_HP + "]");
-			System.out.print(" [마나 : " + guild.get(i).getMp());
-			System.out.println(" / " + guild.get(i).MAX_MP + "]");
+			System.out.printf("\t[체력 : %d / %d ]", guild.get(i).getHp(), guild.get(i).MAX_HP);
+			System.out.printf(" [마나 : %d / %d ]\n" + guild.get(i).getMp(), guild.get(i).MAX_MP);
 		}
 	}
 
